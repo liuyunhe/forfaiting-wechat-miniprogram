@@ -1,0 +1,382 @@
+<view class="chat-room-page container">
+  <scroll-view
+    class="chat-room-list rpx-30"
+    scroll-x="false"
+    scroll-y="false"
+    upper-threshold="50"
+    lower-threshold="50"
+    scroll-top="0"
+    scroll-left="0"
+    scroll-into-view=""
+    scroll-with-animation="false"
+    enable-back-to-top="false"
+    bindscrolltoupper=""
+    bindscrolltolower=""
+    bindscroll=""
+  >
+    <!-- message-opposing-normal -->
+    <view
+      class="chat-room-msg-list"
+      hover-class="none"
+      hover-stop-propagation="false"
+    >
+      <view
+        class="chat-room-msg"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="info">
+          <view class="title">
+            <view class="name"> 陈晓 </view>
+            <view class="bank"> 桂林银行南宁分行 </view>
+          </view>
+          <view class="msg"> 你好啊，王总你好啊</view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+      </view>
+      <!-- message-mine-normal -->
+      <view
+        class="chat-room-msg my"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="info">
+          <view class="msg"> 你好，陈总</view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+      </view>
+      <!-- message-opposing-lcInfo -->
+      <view
+        class="chat-room-msg"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="info">
+          <view class="title">
+            <view class="name"> 陈晓 </view>
+            <view class="bank"> 桂林银行南宁分行 </view>
+          </view>
+          <view class="msg lc-info">
+            <view class="type">
+              <image
+                src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+            </view>
+            <view class="item">
+              <view class="left"> 机构 </view>
+              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 金额（万） </view>
+              <view class="right"> 123,456.78 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 报价（利率） </view>
+              <view class="right"> 3.17% </view>
+            </view>
+            <view class="item">
+              <view class="left"> 期限 </view>
+              <view class="right"> 8M </view>
+            </view>
+          </view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+      </view>
+
+      <view
+        class="chat-room-msg"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="info">
+          <view class="title">
+            <view class="name"> 陈晓 </view>
+            <view class="bank"> 桂林银行南宁分行 </view>
+          </view>
+          <view class="msg"> 这个证我们有意向，可以聊聊吗？</view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+      </view>
+
+      <view
+        class="chat-room-msg my"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="info">
+          <view class="msg"
+            >可以呀陈总，非常欢迎！如果卡片详情内的基本情况符合你们的需求，我们可以针对细节沟通。</view
+          >
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+      </view>
+
+      <view
+        class="chat-room-msg"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="info">
+          <view class="title">
+            <view class="name"> 陈晓 </view>
+            <view class="bank"> 桂林银行南宁分行 </view>
+          </view>
+          <view class="msg"> 这个证我们有意向，可以聊聊吗？</view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+      </view>
+      <!-- message-opposing-lcInfo-confirm -->
+      <view class="chat-room-msg my confirm">
+        <view class="info">
+          <view class="msg lc-info">
+            <view class="type">
+              <image
+                src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+            </view>
+            <view class="comfirm-title"> 请确认是否达成 </view>
+            <view class="item">
+              <view class="left"> 机构 </view>
+              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 金额（万） </view>
+              <view class="right"> 123,456.78 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 报价（利率） </view>
+              <view class="right"> 3.17% </view>
+            </view>
+            <view class="item">
+              <view class="left"> 期限 </view>
+              <view class="right"> 8M </view>
+            </view>
+            <view class="operate-area">
+              <button class="comfirm">确认</button>
+              <button class="reject">拒绝</button>
+            </view>
+          </view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+      </view>
+      <!-- message-opposing-lcInfo-confirm -->
+      <view
+        class="chat-room-msg my confirm"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        <view class="info">
+          <view class="msg lc-info">
+            <view class="type">
+              <image
+                src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+            </view>
+            <view class="comfirm-title"> 请确认是否达成 </view>
+            <view class="item">
+              <view class="left"> 机构 </view>
+              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 金额（万） </view>
+              <view class="right"> 123,456.78 </view>
+            </view>
+            <view class="item">
+              <view class="left"> 报价（利率） </view>
+              <view class="right"> 3.17% </view>
+            </view>
+            <view class="item">
+              <view class="left"> 期限 </view>
+              <view class="right"> 8M </view>
+            </view>
+            <view class="operate-area">
+              <button class="diabled">已与其他人达成</button>
+            </view>
+          </view>
+          <view class="time"> 2024-1-9 10:53:14 </view>
+        </view>
+        <view class="head-avtar">
+          <image
+            class=""
+            src="../../../assets/images/head-avtar.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="chat-room-input-space">
+    <button class="choose-type" bind:tap="handleClickChooseType">
+      <image src="../../../assets/images/icon-choose-type.png" mode="widthFix">
+      </image>
+    </button>
+    <input
+      class="chat-room-input"
+      type="text"
+      confirm-type="send"
+      cursor-spacing="10"
+      bindconfirm="handleClickInputConfirm"
+    />
+    <button class="send">发送</button>
+  </view>
+  <page-container
+    show="{{showPopup}}"
+    round="{{false}}"
+    bind:leave="handleClickComfirm"
+    overlay-style="background-color: rgba(51,51,51,0.5);"
+  >
+    <view class="overlay-container">
+      <view class="icon-close">
+        <image class="" src="" mode="widthFix"> </image>
+      </view>
+      <view class="title"> 请选择要沟通的资产 </view>
+      <view class="list-taps">
+        <view class="list-taps-item active">
+          <view class="name"> 我的出 </view>
+          <view class="line"> </view>
+        </view>
+        <view class="list-taps-item">
+          <view class="name"> 我的收 </view>
+          <view class="line"> </view>
+        </view>
+        <view class="list-taps-item">
+          <view class="name"> TA的出 </view>
+          <view class="line"> </view>
+        </view>
+        <view class="list-taps-item">
+          <view class="name"> TA的收 </view>
+          <view class="line"> </view>
+        </view>
+      </view>
+      <scroll-view
+        class="lc-list"
+        scroll-x="false"
+        scroll-y="false"
+        upper-threshold="50"
+        lower-threshold="50"
+        scroll-top="0"
+        scroll-left="0"
+        scroll-into-view=""
+        scroll-with-animation="false"
+        enable-back-to-top="false"
+        bindscrolltoupper=""
+        bindscrolltolower=""
+        bindscroll=""
+      >
+        <view class="lc-item box-primary">
+          <view class="top">
+            <view class="item first">
+              <view class="name"> 金额（亿） </view>
+              <view class="num text-overflow"> 1.23 </view>
+            </view>
+            <view class="item mid">
+              <view class="name"> 报价（利率） </view>
+              <view class="num danger text-overflow"> 3.17% </view>
+            </view>
+            <view class="item last">
+              <view class="name"> 期限 </view>
+              <view class="num text-overflow"> 8M </view>
+            </view>
+          </view>
+          <view class="operate-area">
+            <button class="send">发送</button>
+            <button class="confirm">发起确认</button>
+          </view>
+        </view>
+        <view class="lc-item box-primary">
+          <view class="top">
+            <view class="item first">
+              <view class="name"> 金额（亿） </view>
+              <view class="num text-overflow"> 1.23 </view>
+            </view>
+            <view class="item mid">
+              <view class="name"> 报价（利率） </view>
+              <view class="num danger text-overflow"> 3.17% </view>
+            </view>
+            <view class="item last">
+              <view class="name"> 期限 </view>
+              <view class="num text-overflow"> 8M </view>
+            </view>
+          </view>
+          <view class="operate-area">
+            <button class="send">发送</button>
+            <button class="confirm">发起确认</button>
+          </view>
+        </view>
+        <view class="no-more"> 暂无更多 </view>
+      </scroll-view>
+    </view>
+  </page-container>
+</view>

@@ -1,0 +1,63 @@
+<view class="business-card container rpx-30">
+  <view class="business-card-form">
+    <form bindsubmit="saveData">
+      <view class="item">
+        <text class="name">所属机构</text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view class="item">
+        <text class="name">姓名</text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view class="item">
+        <text class="name">部门</text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view class="item">
+        <text class="name">手机号</text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view class="item">
+        <text class="name">所属机构</text>
+        <input
+          type="number"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <button class="btn-primary submit" bind:tap="handleClickSubmit">
+        提交
+      </button>
+      <button class="btn-primary register" bind:tap="handleClickRegister">
+        重新认证
+      </button>
+      <view class="note"> 注：修改所属机构或姓名，请重新认证 </view>
+    </form>
+  </view>
+</view>

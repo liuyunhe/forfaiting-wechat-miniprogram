@@ -1,0 +1,129 @@
+page {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.container {
+  height: 100vh;
+  background: #FFFFFF linear-gradient(180deg, #9A4894 0%, #4B65B3 100%);
+  box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.08);
+}
+
+.view-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.view-bottom{
+  width: 610rpx;
+  position:fixed;
+  bottom:0;
+  margin-bottom:150rpx;
+}
+
+.wechatapp {
+  padding: 80rpx 0 48rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+  margin-bottom: 72rpx;
+  text-align: center;
+}
+
+.wechatapp .header {
+  width: 190rpx;
+  height: 190rpx;
+  border: 2px solid #fff;
+  margin: 0rpx auto 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 1px 0px 5px rgba(50, 50, 50, 0.3);
+}
+
+.auth-title {
+  color: #585858;
+  margin-bottom: 40rpx;
+  margin-left: 20rpx;
+}
+
+.auth-subtitle {
+  color: #888;
+  margin-left: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.login-btn {
+  width: 100%;
+  border: none;
+  background: #3865B1;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 999rpx;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx;
+  margin-top: 60rpx;
+}
+.cancle-btn {
+  width: 100%;
+  border: 1rpx solid #FFFFFF;
+  background: transparent;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 999rpx;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx;
+  margin-top: 60rpx;
+  margin-bottom: 95rpx;
+}
+
+.login-btn::after {
+  display: none;
+}
+
+.login-btn.button-hover {
+  box-shadow: inset 0 5rpx 30rpx rgba(0, 0, 0, 0.15);
+}
+
+.input-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.f-28{
+  margin-top: 10rpx;
+  align-content: center;
+  color: #666666;
+}
+
+.input-border{
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  padding-left: 15rpx;
+  margin-bottom: 35rpx;
+}
+.agree-text{
+  font-size: 24rpx;
+  color: #FFFFFF;
+  &.file{
+    color: #0097E0;
+  }
+}
+.login{
+  justify-content: flex-start;
+}
+
+.logo-login{
+  width: 135rpx;
+  height: 132rpx;
+  padding-top: 300rpx;
+}
+.sys-title{
+  width: 100%;
+  margin-top: 20rpx;
+  font-size: 34rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 1;
+}

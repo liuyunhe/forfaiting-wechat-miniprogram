@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../../components/echarts/ec-canvas"
+  },
+  "navigationBarTitleText": "报价汇总",
+  "backgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

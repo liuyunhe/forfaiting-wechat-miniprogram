@@ -1,0 +1,67 @@
+<view class="chat-list-page container rpx-30">
+  <view class="search-space">
+    <input type="text" placeholder="搜索" 	placeholder-style="color:#999999"/>
+  </view>
+  <scroll-view
+    class="chat-list"
+    scroll-x="false"
+    scroll-y="false"
+    upper-threshold="50"
+    lower-threshold="50"
+    scroll-top="0"
+    scroll-left="0"
+    scroll-into-view=""
+    scroll-with-animation="false"
+    enable-back-to-top="false"
+    bindscrolltoupper=""
+    bindscrolltolower=""
+    bindscroll=""
+  >
+    <view class="chat-list-item">
+      <view class="left">
+        <image
+          class="head-avtar"
+          src="../../../assets/images/head-avtar.png"
+          mode="widthFix"
+          lazy-load="true"
+        >
+        </image>
+        <view class="new-message-point"></view>
+      </view>
+      <view class="right">
+        <view class="person-info">
+          <view class="name"> 陈晓 </view>
+          <view class="bank"> 桂林银行南宁分行 </view>
+        </view>
+        <view class="last-message text-overflow">
+          可以呀李总，非常欢迎！如果卡片信息展示可以呀李总，非常欢迎！
+          如果卡片信息展示可以呀李总，非常欢迎！如果卡片信息展示
+        </view>
+        <view class="time"> 2024-1-9 10:53:14 </view>
+      </view>
+    </view>
+    <view class="chat-list-item">
+      <view class="left">
+        <image
+          class="head-avtar"
+          src="../../../assets/images/head-avtar.png"
+          mode="widthFix"
+          lazy-load="true"
+        >
+          <view class="new-message-point"> </view>
+        </image>
+      </view>
+      <view class="right">
+        <view class="person-info">
+          <view class="name"> 陈晓 </view>
+          <view class="bank"> 桂林银行南宁分行 </view>
+        </view>
+        <view class="last-message message text-overflow">【已拒绝】</view>
+        <view class="time"> 2024-1-9 10:53:14 </view>
+      </view>
+    </view>
+    <view class="no-more">
+      暂无更多
+    </view>
+  </scroll-view>
+</view>

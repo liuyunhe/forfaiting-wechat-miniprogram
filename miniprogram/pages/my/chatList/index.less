@@ -1,0 +1,97 @@
+.container {
+  padding-top: 20rpx;
+  .search-space {
+    width: 690rpx;
+    background: #FFFFFF;
+    border-radius: 10rpx;
+    input {
+      font-size: 28rpx;
+      height: 70rpx;
+      line-height: 70rpx;
+      font-weight: 500;
+      color: #999999;
+      padding-left: 30rpx;
+    }
+  }
+  .chat-list {
+    height: calc(100vh - 130rpx);
+    margin: 20rpx 0;
+    .chat-list-item {
+      height: 170rpx;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #FFFFFF;
+      box-shadow: 0rpx 4rpx 6rpx 0rpx rgba(84, 84, 84, 0.08);
+      border-radius: 10rpx;
+      padding: 30rpx;
+      box-sizing: border-box;
+      margin-bottom: 20rpx;
+      .left {
+        position: relative;
+        width: 100rpx;
+        height: 100rpx;
+        margin-right: 30rpx;
+        image {
+          width: 100rpx;
+          height: 100rpx;
+          border-radius: 100%;
+        }
+        .new-message-point {
+          width: 24rpx;
+          height: 24rpx;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: #EE1B1B;
+          border-radius: 100%;
+        }
+      }
+      .right {
+        width: 500rpx;
+        flex: 1;
+        padding-top: 7rpx;
+        .person-info {
+          height: 45rpx;
+          margin-bottom: 5rpx;
+          .name {
+            float: left;
+            font-size: 32rpx;
+            font-weight: 800;
+            color: #333333;
+            line-height: 38rpx;
+          }
+          .bank {
+            float: left;
+            margin-top: 7rpx;
+            margin-left: 38rpx;
+            height: 39rpx;
+            font-size: 28rpx;
+            font-weight: 500;
+            color: #666666;
+            line-height: 33rpx;
+          }
+        }
+        .last-message {
+          height: 34rpx;
+          font-size: 24rpx;
+          font-weight: 500;
+          color: #666666;
+          line-height: 28rpx;
+          margin-bottom: 5rpx;
+          text-align: justify;
+          &.message{
+            margin-left: -10rpx;
+          }
+        }
+        .time {
+          height: 28rpx;
+          font-size: 20rpx;
+          font-weight: 500;
+          color: #999999;
+          line-height: 23rpx;
+        }
+      }
+    }
+  }
+}

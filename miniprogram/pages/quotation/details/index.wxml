@@ -1,0 +1,8 @@
+<view class="quotation-page container rpx-30">
+  <view class="quotation-page-spance">
+    <!-- 图表 -->
+    <view class="echart-space box-primary">
+       <ec-canvas id="mychart-dom-bar" canvas-id="echart-bar" ec="{{ec}}"></ec-canvas>
+    </view>
+  </view>
+</view>

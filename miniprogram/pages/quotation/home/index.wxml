@@ -1,0 +1,49 @@
+<view class="quotation-page container rpx-30">
+  <view class="quotation-page-spance">
+    <!-- 图表 -->
+    <view class="echart-space box-primary">
+      <ec-canvas id="mychart-dom-bar" canvas-id="echart-bar" ec="{{ec}}"></ec-canvas>
+    </view>
+    <!-- 表格 -->
+    <view class="table-space box-primary">
+      <view class="title">
+        <view class="name"> 机构名称 </view>
+        <view class="name"> 3M </view>
+        <view class="name"> 6M </view>
+        <view class="name"> 12M </view>
+        <view class="name"> </view>
+      </view>
+      <view class="line">
+        <view class="value"> 工商银行 </view>
+        <view class="value"> 1.92% </view>
+        <view class="value"> 1.87% </view>
+        <view class="value"> 2.03% </view>
+        <view class="value details" bind:tap="handleClickDetails"> 详情 > </view>
+      </view>
+      <view class="line">
+        <view class="value"> 工商银行 </view>
+        <view class="value"> 1.92% </view>
+        <view class="value"> 1.87% </view>
+        <view class="value"> 2.03% </view>
+        <view class="value details"> 详情 > </view>
+      </view>
+      <view class="line">
+        <view class="value"> 工商银行 </view>
+        <view class="value"> 1.92% </view>
+        <view class="value"> 1.87% </view>
+        <view class="value"> 2.03% </view>
+        <view class="value details"> 详情 > </view>
+      </view>
+      <view class="line">
+        <view class="value"> 工商银行 </view>
+        <view class="value"> 1.92% </view>
+        <view class="value"> 1.87% </view>
+        <view class="value"> 2.03% </view>
+        <view class="value details"> 详情 > </view>
+      </view>
+      <view class="no-more">
+        暂无更多
+      </view>
+    </view>
+  </view>
+</view>

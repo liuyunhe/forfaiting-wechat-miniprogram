@@ -1,0 +1,12 @@
+<view class="publish container">
+  <view class="lc send" bind:tap="handleClickSD">
+    <image class="" src="../../../assets/images/icon-lc-send.png" mode="widthFix" >
+      
+    </image>
+  </view>
+  <view class="lc receive" bind:tap="handleClickREC">
+    <image class="" src="../../../assets/images/icon-lc-re.png" mode="widthFix" >
+      
+    </image>
+  </view>
+</view>

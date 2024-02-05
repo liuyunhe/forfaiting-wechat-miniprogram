@@ -1,0 +1,74 @@
+<view class="receive-detail-page container rpx-30">
+  <view class="receive-detail">
+    <!-- 名片 -->
+    <view class="person-info box-primary">
+      <view class="left">
+        <view class="name"> 陈晓 </view>
+        <view class="title"> 业务部总经理 </view>
+        <view class="bank"> 机构：桂林银行南宁分行 </view>
+        <view class="phone"> 电话：15303446857 </view>
+      </view>
+      <view class="right">
+        <image
+          class="head-avtar"
+          src="../../../assets/images/head-avtar.png"
+          mode="widthFix"
+          lazy-load="false"
+          binderror=""
+          bindload=""
+        >
+        </image>
+      </view>
+    </view>
+    <!-- 详情 -->
+    <view class="detail-space box-primary">
+      <view class="type">
+        <image
+          src="../../../assets/images/icon-lc-sd.png"
+          mode="widthFix"
+          lazy-load="false"
+          binderror=""
+          bindload=""
+        >
+        </image>
+      </view>
+      <view class="line">
+        <view class="name"> 承兑行名称 </view>
+        <view class="value"> 工商银行 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 承兑行类型 </view>
+        <view class="value"> 城商 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 期限 </view>
+        <view class="value">3~6M </view>
+      </view>
+      <view class="line">
+        <view class="name"> 金额 </view>
+        <view class="value"> 999.36万 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 报价 </view>
+        <view class="value"> 3.62% </view>
+      </view>
+      <view class="line">
+        <view class="name"> 转卖次数 </view>
+        <view class="value">  1次 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 贸易类型 </view>
+        <view class="value"> 货贸/服贸 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 备注 </view>
+        <view class="value"> -- </view>
+      </view>
+      <view class="line">
+        <view class="name"> 发布截止日期 </view>
+        <view class="value"> 2024-10-01</view>
+      </view>
+      <button class="btn-primary chat" bind:tap="handleClickChat">在线沟通</button>
+    </view>
+  </view>
+</view>

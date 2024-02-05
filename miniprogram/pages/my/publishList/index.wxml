@@ -1,0 +1,80 @@
+<view class="publish-list-page container">
+  <!-- 标签页 -->
+  <view class="publish-list-taps">
+    <view class="publish-list-taps-item active">
+      <view class="name"> 全部 </view>
+      <view class="line"> </view>
+    </view>
+    <view class="publish-list-taps-item">
+      <view class="name"> 出证 </view>
+      <view class="line"> </view>
+    </view>
+    <view class="publish-list-taps-item">
+      <view class="name"> 收证 </view>
+      <view class="line"> </view>
+    </view>
+  </view>
+  <!-- 发布列表 -->
+  <scroll-view
+    class="publish-list rpx-30"
+    scroll-x="false"
+    scroll-y="false"
+    upper-threshold="50"
+    lower-threshold="50"
+    scroll-top="0"
+    scroll-left="0"
+    scroll-into-view=""
+    scroll-with-animation="false"
+    enable-back-to-top="false"
+    bindscrolltoupper=""
+    bindscrolltolower=""
+    bindscroll=""
+  >
+    <view class="publish-list-item box-primary">
+      <view class="type">
+        <image
+          src="../../../assets/images/icon-lc-rec.png"
+          mode="widthFix"
+          lazy-load="false"
+          binderror=""
+          bindload=""
+        >
+        </image>
+        <!-- <image
+          src="../../../assets/images/icon-lc-rec.png"
+          mode="widthFix"
+          lazy-load="false"
+          binderror=""
+          bindload=""
+        >
+        </image> -->
+      </view>
+      <view class="complete">
+          <image
+            src="../../../assets/images/logo-complete.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          >
+          </image>
+        </view>
+      <view class="content">
+        <view class="content-item text-overflow"> 金额：111.111~999.999亿 </view>
+        <view class="content-item text-overflow"> 转卖次数：≤1 </view>
+        <view class="content-item text-overflow"> 期限：3~6M </view>
+        <view class="content-item text-overflow"> 报价：3.52~4.52% </view>
+        <view class="content-item text-overflow"> 发布日期：32023-10-01 </view>
+        <view class="content-item text-overflow"> 状态：上架中 </view>
+      </view>
+      <view class="bottom">
+        <button class='btn-primary-mini'>发送</button>
+        <button class='btn-outline-mini'>达成</button>
+        <button class='btn-outline-mini'>一键复制</button>
+      </view>
+    </view>
+     <view class="no-more">
+      暂无更多
+    </view>
+  </scroll-view>
+</view>

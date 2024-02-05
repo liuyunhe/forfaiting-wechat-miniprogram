@@ -1,0 +1,42 @@
+<view class="receive-detail-page container rpx-30">
+  <view class="receive-detail">
+    
+    <!-- 表单 -->
+    <view class="detail-space box-primary">
+      <view class="line">
+        <view class="name"> 承兑行 <span class="need">*</span></view>
+        <view class="value"> 国股/城商 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 期限 <span class="need">*</span></view>
+        <view class="value">3~6M </view>
+      </view>
+      <view class="line">
+        <view class="name"> 金额 <span class="need">*</span></view>
+        <view class="value"> 1,200.36 ~ 3,200.36万 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 报价 <span class="need">*</span></view>
+        <view class="value"> 3.41% ~ 3.62% </view>
+      </view>
+      <view class="line">
+        <view class="name"> 转卖次数 <span class="need">*</span></view>
+        <view class="value"> ≤ 1次 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 贸易类型 <span class="need">*</span></view>
+        <view class="value"> 货贸/服贸 </view>
+      </view>
+      <view class="line">
+        <view class="name"> 备注 </view>
+        <view class="value"> </view>
+      </view>
+      <view class="line">
+        <view class="name"> 发布截止日期 <span class="need">*</span></view>
+        <view class="value"> 2024-10-01</view>
+      </view>
+      
+    </view>
+    <button class="btn-primary publish">发布</button>
+  </view>
+</view>

@@ -1,0 +1,293 @@
+<view class="home-page container">
+  <!-- 系统信息 -->
+  <!-- <view class="top-bar">
+    <view class="title-space">
+      <image class="" src="../../../assets/images/sys-logo.png" mode="widthFix">
+      </image>
+      <view class="sys-name"> 贸易金融跨行交易报价系统 </view>
+    </view>
+  </view> -->
+  <!-- 轮播图 -->
+  <view class="swiper-space">
+    <swiper
+      class="img-swiper"
+      indicator-dots="true"
+      indicator-active-color="#FFFFFF"
+      autoplay="false"
+      circular="false"
+      interval="2000"
+    >
+      <swiper-item wx:for="{{ imgNewsData }}" wx:key="index">
+        <image
+          class="swiper-img"
+          src="../../../assets/images/swiper-1.png"
+          data-index="{{index}}"
+          mode="aspectFill"
+        ></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 列表 -->
+  <view class="lc-space rpx-30">
+    <!-- 筛选条 -->
+    <view class="filter-bar-area">
+      <view class="filter-bar box-primary">
+        <view class="item">
+          <view class="name"> 方向 </view>
+          <view class="icon">
+            <image
+              class=""
+              src="../../../assets/images/icon-arrow-down.png"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name"> 金额 </view>
+          <view class="icon">
+            <image
+              class=""
+              src="../../../assets/images/icon-arrow-down.png"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name"> 期限 </view>
+          <view class="icon">
+            <image
+              class=""
+              src="../../../assets/images/icon-arrow-down.png"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+        </view>
+        <view class="item" bind:tap="handleClickMoreFilter">
+          <view class="name"> 筛选 </view>
+          <view class="icon">
+            <image
+              class=""
+              src="../../../assets/images/icon-arrow-filter.png"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+        </view>
+      </view>
+      <view class="more-filter-bar" wx:if="{{showMoreFilter}}">
+        <view class="item">
+          <view class="title"> 方向 </view>
+          <view class="content">
+            <view class="btn active"> 收证 </view>
+            <view class="btn"> 出证 </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="title"> 期限 </view>
+          <view class="content">
+            <view class="btn active"> 1~3M </view>
+            <view class="btn"> 6M </view>
+            <view class="btn"> 9M </view>
+            <view class="btn"> 12M </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="title"> 方向 </view>
+          <view class="content">
+            <view class="btn active"> 国股 </view>
+            <view class="btn"> 城商 </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="title"> 金额 </view>
+          <view class="content">
+            <view class="btn active"> ≤1000万 </view>
+            <view class="btn"> 1000万~1亿 </view>
+            <view class="btn"> 1亿~3亿 </view>
+            <view class="btn"> 3亿以上 </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="title"> 报价（利率）</view>
+          <view class="content">
+            <view class="btn active"> 国股 </view>
+            <view class="btn"> 城商 </view>
+          </view>
+        </view>
+        <view class="item">
+          <button class="cancel" bind:tap="handleCloseMoreFilter">取消</button>
+          <button class="confirm">确定</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 列表 -->
+    <scroll-view
+      wx:if="{{!showMoreFilter}}"
+      class="lc-list"
+      scroll-x="false"
+      scroll-y="false"
+      upper-threshold="50"
+      lower-threshold="50"
+      scroll-top="0"
+      scroll-left="0"
+      scroll-into-view=""
+      scroll-with-animation="false"
+      enable-back-to-top="false"
+      bindscrolltoupper=""
+      bindscrolltolower=""
+      bindscroll=""
+    >
+      <view
+        class="lc-list-item box-primary"
+        bind:tap="handleClickCard"
+        data-type="1"
+      >
+        <view class="type">
+          <image
+            src="../../../assets/images/icon-lc-sd.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          >
+          </image>
+        </view>
+        <view class="top">
+          <view class="bank-icon">
+            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
+            </image>
+          </view>
+          <view class="bank-info">
+            <view class="name text-overflow">
+              建设银行北京分行（朝阳支行）
+            </view>
+            <view class="time"> 2024-1-9 10:24:17 </view>
+          </view>
+          <image
+            class="bank-con"
+            src="../../../assets/images/bank-con-log.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="bottom">
+          <view class="item first">
+            <view class="name"> 金额（亿） </view>
+            <view class="num text-overflow"> 1.23 </view>
+          </view>
+          <view class="item mid">
+            <view class="name"> 报价（利率） </view>
+            <view class="num danger text-overflow"> 3.17% </view>
+          </view>
+          <view class="item last">
+            <view class="name"> 期限 </view>
+            <view class="num text-overflow"> 8M </view>
+          </view>
+        </view>
+      </view>
+      <view
+        class="lc-list-item box-primary"
+        bind:tap="handleClickCard"
+        data-type="2"
+      >
+        <view class="type">
+          <image
+            src="../../../assets/images/icon-lc-rec.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          >
+          </image>
+        </view>
+        <view class="top">
+          <view class="bank-icon">
+            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
+            </image>
+          </view>
+          <view class="bank-info">
+            <view class="name text-overflow"> 桂林银行南宁分行 </view>
+            <view class="time"> 2024-1-9 10:24:17 </view>
+          </view>
+          <image
+            class="bank-con"
+            src="../../../assets/images/bank-con-log.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="bottom">
+          <view class="item">
+            <view class="name"> 金额（亿） </view>
+            <view class="num text-overflow"> 123.456~567.789 </view>
+          </view>
+          <view class="item">
+            <view class="name"> 报价（利率） </view>
+            <view class="num danger text-overflow"> 3.41%~3.62% </view>
+          </view>
+          <view class="item last">
+            <view class="name"> 期限 </view>
+            <view class="num text-overflow"> 11~12M </view>
+          </view>
+        </view>
+      </view>
+      <view class="lc-list-item box-primary disabled">
+        <view class="type">
+          <image
+            src="../../../assets/images/icon-lc-rec.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          >
+          </image>
+        </view>
+        <view class="complete">
+          <image
+            src="../../../assets/images/logo-complete.png"
+            mode="widthFix"
+            lazy-load="false"
+            binderror=""
+            bindload=""
+          >
+          </image>
+        </view>
+        <view class="top">
+          <view class="bank-icon">
+            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
+            </image>
+          </view>
+          <view class="bank-info">
+            <view class="name text-overflow"> 桂林银行南宁分行 </view>
+            <view class="time"> 2024-1-9 10:24:17 </view>
+          </view>
+          <image
+            class="bank-con"
+            src="../../../assets/images/bank-con-log.png"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view class="bottom">
+          <view class="item">
+            <view class="name"> 金额（亿） </view>
+            <view class="num text-overflow"> 123.456~567.789 </view>
+          </view>
+          <view class="item">
+            <view class="name"> 报价（利率） </view>
+            <view class="num danger text-overflow"> 3.41%~3.62% </view>
+          </view>
+          <view class="item last">
+            <view class="name"> 期限 </view>
+            <view class="num text-overflow"> 11~12M </view>
+          </view>
+        </view>
+      </view>
+      <view class="no-more"> 暂无更多 </view>
+    </scroll-view>
+  </view>
+</view>

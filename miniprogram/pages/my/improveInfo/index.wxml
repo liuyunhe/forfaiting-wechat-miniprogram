@@ -1,0 +1,65 @@
+<view class="business-card container rpx-30">
+  <view class="business-card-form">
+    <form bindsubmit="saveData">
+      <view class="form-title">
+        请完善您的认证信息
+      </view>
+      <view wx:if="{{type === 'org'}}" class="item">
+        <text class="name">金融机构名称<text class="red">*</text></text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view wx:if="{{type === 'company'}}" class="item">
+        <text class="name">企业名称<text class="red">*</text></text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view wx:if="{{type === 'company'}}" class="item">
+        <text class="name">统一社会信用代码<text class="red">*</text></text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view  class="item">
+        <text class="name">姓名<text class="red">*</text></text>
+        <input
+          type="text"
+          class="input-drug"
+          placeholder="请输入"
+          name="address"
+          value="{{org}}"
+        />
+      </view>
+      <view class="item">
+        <text class="name">名片<text class="red">*</text></text>
+        <view class="upload" >
+          <view class="bussiness-card up" >
+            <image class="" src="../../../assets/images/icon-card-up.png" mode="widthFix" />
+              
+          </view>
+          <view class="bussiness-card down" >
+            <image class="" src="../../../assets/images/icon-card-down.png" mode="widthFix" />
+          </view>
+        </view>
+      </view>
+      <view class="note"> 注：修改所属机构或姓名，请重新认证 </view>
+      <button class="btn-primary submit" bind:tap="handleClickSubmit">
+        提交
+      </button>
+    </form>
+  </view>
+</view>

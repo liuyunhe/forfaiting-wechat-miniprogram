@@ -1,0 +1,101 @@
+.container {
+  justify-content: flex-start;
+  .publish-list-taps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 88rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.08);
+    padding: 0 70rpx;
+    box-sizing: border-box;
+    .publish-list-taps-item {
+      .name {
+        height: 42rpx;
+        font-size: 30rpx;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 500;
+        color: #333333;
+        line-height: 35rpx;
+        margin-bottom: 8rpx;
+      }
+      .line {
+        height: 5rpx;
+        background: #fff;
+      }
+      &.active .name {
+        color: #0097E0;
+      }
+      &.active .line {
+        background: #0097E0;
+      }
+    }
+  }
+  .publish-list {
+    margin: 30rpx 0;
+    height: calc(100vh - 148rpx);
+    box-sizing: border-box;
+    .publish-list-item {
+      position: relative;
+      height: 280rpx;
+      padding: 30rpx 40rpx 0;
+      box-sizing: border-box;
+      margin-bottom: 30rpx;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      .type {
+        position: absolute;
+        width: 70rpx;
+        height: 70rpx;
+        top: 0;
+        left: 0;
+        image {
+          width: 100%;
+        }
+      }
+      .complete {
+        position: absolute;
+        width: 150rpx;
+        height: 150rpx;
+        top: -10rpx;
+        right: 0;
+        image {
+          width: 100%;
+        }
+      }
+      .content {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 167rpx;
+        border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+        .content-item {
+          height: 39rpx;
+          font-size: 28rpx;
+          font-weight: 500;
+          color: #333333;
+          line-height: 33rpx;
+          margin-bottom: 12rpx;
+          text-align: justify;
+          &:nth-child(2n+1) {
+            width: 330rpx;
+            margin-right: 20rpx;
+          }
+          &:nth-child(2n) {
+            flex: 1;
+          }
+        }
+
+      }
+      .bottom {
+        width: 100%;
+        button {
+          float: right;
+          margin-left: 30rpx;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+<view class="my-home container">
+  <view class="header">
+    <image
+      class="banner"
+      src="../../../assets/images/my-banner.png"
+      mode="widthFix"
+    />
+    <view class="person-info">
+      <view class="head">
+        <image
+          class="head-img"
+          src="../../../assets/images/head-avtar.png"
+          mode="widthFix"
+        />
+        <image
+          class="pen-icon"
+          src="../../../assets/images/pen-icon.png"
+          mode="widthFix"
+        />
+      </view>
+      <view class="details" wx:if="{{autherized}}">
+        <view class="name">
+          <view class="name-text">王德川</view>
+          <image
+            class="register-active"
+            src="../../../assets/images/register-active.png"
+            mode="widthFix"
+          />
+          <view class="register-text"> 已认证 </view>
+        </view>
+        <view class="bank"> 青岛银行股份有限公司香港花园支行 </view>
+        <view class="phone-num"> 15303446875 </view>
+      </view>
+      <view class="details" wx:else>
+        <view class="phone"> 15303448557 </view>
+        <view class="register">
+          <image
+            class="register-icon"
+            src="../../../assets/images/register-disable.png"
+            mode="widthFix"
+          />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 未认证 -->
+  <view wx:if="{{!autherized}}" class="register-container rpx-30">
+    <view class="progress">
+      <view class="top">
+        <view class="circle active"></view>
+        <view class="line"></view>
+        <view class="circle"></view>
+      </view>
+      <view class="bottom">
+        <view class="text active">填写认证信息</view>
+        <view class="line"></view>
+        <view class="text">等待审核</view>
+      </view>
+    </view>
+    <view class="register">
+      <view class="line">
+        <view class="left">
+          <view class="name"> 金融机构认证 </view>
+          <view class="info"> 上传金融机构信息审核 </view>
+        </view>
+        <view class="right">
+          <button class="btn" bind:tap="handleClickRegister" data-type="org">去认证</button>
+        </view>
+      </view>
+      <view class="line">
+        <view class="left">
+          <view class="name"> 企业认证 </view>
+          <view class="info"> 上传企业工商信息后审核 </view>
+        </view>
+        <view class="right">
+          <button class="btn" bind:tap="handleClickRegister" data-type="company">去认证</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 已认证 -->
+  <view wx:else class="info-container rpx-30">
+    <view class="func-list">
+      <view class="line" bind:tap="handleClickLine" data-name="publishList">
+        <image
+          class="line-icon"
+          src="../../../assets/images/line-pub-icon.png"
+          mode="widthFix"
+        />
+        <view class="line-title"> 发布列表 </view>
+        <image
+          class="arrow-icon"
+          src="../../../assets/images/r-arrow.png"
+          mode="widthFix"
+        />
+      </view>
+      <view class="line" bind:tap="handleClickLine" data-name="chatList">
+        <image
+          class="line-icon"
+          src="../../../assets/images/line-com-icon.png"
+          mode="widthFix"
+        />
+        <view class="line-title">
+          <span> 沟通列表 </span>
+          <span class="msg">2条未读消息</span>
+        </view>
+        <image
+          class="arrow-icon"
+          src="../../../assets/images/r-arrow.png"
+          mode="widthFix"
+        />
+      </view>
+      <view class="line" bind:tap="handleClickLine" data-name="businessCard">
+        <image
+          class="line-icon"
+          src="../../../assets/images/line-mb-icon.png"
+          mode="widthFix"
+        />
+        <view class="line-title"> 我的名片 </view>
+        <image
+          class="arrow-icon"
+          src="../../../assets/images/r-arrow.png"
+          mode="widthFix"
+        />
+      </view>
+    </view>
+    <button class="btn-exit" bind:tap="handleClickExit">退出</button>
+  </view>
+</view>

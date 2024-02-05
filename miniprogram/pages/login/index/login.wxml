@@ -1,0 +1,34 @@
+<view class="login container">
+  <image class="logo-login" src="../../../assets/images/sys-logo.png" mode="widthFix" />
+  <view class="sys-title" >
+    贸易金融跨行交易报价系统
+  </view>
+  <view class="view-bottom">
+    <button
+      class="login-btn"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="getPhoneNumber"
+      style="width: 100%"
+    >
+      手机号登录
+    </button>
+    <button
+      class="cancle-btn"
+      style="width: 100%"
+    >
+      再看看
+    </button>
+    <view class="view-row">
+      <radio
+        color="#26a886;"
+        style="transform: scale(0.6)"
+        bindtap="radioTap"
+        checked="{{radioType}}"
+      ></radio>
+      <text class="agree-text">已阅读并同意</text>
+      <text class="agree-text file" bindtap="agreement">《隐私条款》</text>
+      <text class="agree-text">及</text>
+      <text class="agree-text file" bindtap="agreement">《用户服务协议》</text>
+    </view>
+  </view>
+</view>
