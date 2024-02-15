@@ -1,5 +1,9 @@
 /// <reference path="./types/index.d.ts" />
 
+/**
+ * `IAppOption` : 小程序App类型结构
+ * 
+*/
 interface IAppOption {
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo,

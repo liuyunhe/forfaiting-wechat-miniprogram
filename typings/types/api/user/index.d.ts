@@ -1,5 +1,5 @@
 /**
- * WechatDTO
+ * `LoginParamVO` : 用户登录请求参数
  */
 interface LoginParamVO {
   /**
@@ -30,9 +30,8 @@ interface LoginParamVO {
 }
 
 /**
-* 数据封装
 *
-* JwtAuthenticationResponse
+* `JwtAuthenticationResponse` : 用户登录请求参数
 */
 interface JwtAuthenticationResponse {
   account?: string;
@@ -50,13 +49,7 @@ interface JwtAuthenticationResponse {
 }
 
 
-interface MapObject {
-  /**
-   * value.userAttrs.key
-   */
-  key?: { [key: string]: any };
-  [property: string]: any;
-}
+
 
 /**
  * RefreshTokenDTO
