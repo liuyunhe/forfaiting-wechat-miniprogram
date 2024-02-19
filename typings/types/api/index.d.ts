@@ -1,6 +1,7 @@
 /// <reference path="./user/index.d.ts" />
 /// <reference path="./advertisement/index.d.ts" />
 /// <reference path="./asset-release/index.d.ts" />
+/// <reference path="./chat-msg/index.d.ts" />
 
 
 
