@@ -17,14 +17,15 @@
     "strict": true,
     "strictPropertyInitialization": true,
     "lib": ["ES2020"],
-    "typeRoots": [
-      "./typings"
-    ]
+    "typeRoots": ["./typings"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./miniprogram/*"],
+      "tdesign-miniprogram/*": [
+        "./miniprogram/miniprogram_npm/tdesign-miniprogram/*"
+      ]
+    }
   },
-  "include": [
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"],
 }
