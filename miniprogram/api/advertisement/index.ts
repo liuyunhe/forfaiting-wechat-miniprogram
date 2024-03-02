@@ -9,6 +9,6 @@ import { request } from '../request'
 export const getAdvertisement = (params: AdvertisementParamVO) =>
   request<AdvertisementParamVO, PageResult<AdvertisementVO>>({
     method: 'POST',
-    url: '/member/business/advertisement/list',
+    url: '/member/member/business/advertisement/list',
     data: params
   })
