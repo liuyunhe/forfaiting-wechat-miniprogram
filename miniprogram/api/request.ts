@@ -1,8 +1,20 @@
-const DEV_BASE_URL = 'https://fftingcs.guilinbank.com.cn/api'
-// const DEV_BASE_URL = 'https://fft.openunion.cn/api'
+// const DEV_BASE_URL = 'https://fftingcs.guilinbank.com.cn/api'
+const DEV_BASE_URL = 'https://fft.openunion.cn/api'
 
 const MASTER_BASE_URL = 'https://ffting.guilinbank.com.cn/api'
-export const BASE_URL = DEV_BASE_URL
+
+const accountInfo = wx.getAccountInfoSync()
+
+let API_URL = ''
+console.log('miniprogram version ===>',accountInfo.miniProgram.envVersion)
+if (accountInfo.miniProgram.envVersion == 'release') {
+  // 线上正式版本
+  API_URL = DEV_BASE_URL
+} else {
+  // 非线上 开发或体验版本
+  API_URL = DEV_BASE_URL
+}
+export const BASE_URL = API_URL
 
 let JWT_DISABLE = false
 
@@ -63,6 +75,23 @@ export const request = <U extends string | WechatMiniprogram.IAnyObject | ArrayB
              },1000)
             wx.showToast({
               title: '请重新登录',
+              icon: 'error'
+            })
+            return
+          }
+          // 未认证个人信息
+          if (res.statusCode == 403 && res.data.code === '2002') {
+            if (JWT_DISABLE) { 
+              return
+            } 
+            JWT_DISABLE = true
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/my/home/index'
+              })
+             },1000)
+            wx.showToast({
+              title: '请认证个人信息',
               icon: 'error'
             })
             return

@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationStyle": "custom"
+  "usingComponents": {
+    "t-sticky": "tdesign-miniprogram/sticky/sticky"
+  },
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50
 }

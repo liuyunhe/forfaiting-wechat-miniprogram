@@ -41,6 +41,7 @@
     box-sizing: border-box;
     margin-top: 30rpx;
     .filter-bar-area {
+      position: relative;
       .filter-bar {
         width: 100%;
         height: 88rpx;
@@ -70,14 +71,46 @@
         }
 
       }
+      .drop-down-menu {
+        position: absolute;
+        width: 25%;
+        z-index: 9999;
+        top: 90rpx;
+        left: 0;
+        background: #FFFFFF;
+        box-shadow: 0rpx 0rpx 9rpx 0rpx rgba(84, 84, 84, 0.1);
+        border-radius: 0rpx 0rpx 10rpx 10rpx;
+        .drop-down-item {
+          height: 60rpx;
+          font-size: 24rpx;
+          font-weight: 500;
+          color: #333333;
+          line-height: 60rpx;
+          text-align: center;
+          &.active {
+            color: #0097E0;
+          }
+        }
+        &.fx {
+          left: 0;
+        }
+        &.je {
+          left: 25%;
+        }
+        &.qx {
+          left: 50%;
+        }
+      }
       .more-filter-bar {
+        position: absolute;
+        top: 90rpx;
+        left: 0;
         width: 100%;
         padding: 30rpx 0 0;
         background: #FFFFFF;
         box-shadow: 0rpx 0rpx 9rpx 0rpx rgba(84, 84, 84, 0.1);
         border-radius: 0rpx 0rpx 10rpx 10rpx;
         box-sizing: border-box;
-        margin-top: -20rpx;
         margin-bottom: 130rpx;
         .item {
           overflow: auto;
@@ -92,10 +125,10 @@
           }
           .content {
             width: 100%;
-              display: flex;
-              justify-content: flex-start;
-              flex-wrap: wrap;
-              margin-left: 30rpx;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-left: 30rpx;
             .btn {
               padding: 8rpx 30rpx;
               height: 40rpx;
@@ -108,142 +141,221 @@
               margin-right: 30rpx;
               flex-shrink: 0;
               border-radius: 4rpx 4rpx 4rpx 4rpx;
-              &.active{
+              &.active {
                 color: #0097E0;
                 background: rgba(0, 151, 224, 0.1);
               }
             }
+            .input-bar {
+              height: 60rpx;
+              border-radius: 4rpx 4rpx 4rpx 4rpx;
+              border: 1rpx solid rgba(0, 0, 0, 0.1);
+
+              box-sizing: border-box;
+              input {
+                float: left;
+                width: 90rpx;
+                height: 60rpx;
+                font-size: 28rpx;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 0;
+              }
+              .text {
+                float: left;
+                margin: 16rpx 0;
+                width: 50rpx;
+                height: 28rpx;
+                line-height: 28rpx;
+                text-align: center;
+                font-size: 28rpx;
+                font-weight: 500;
+                color: #333333;
+                border-left: 2rpx solid #CCCCCC;
+              }
+            }
           }
-          button{
+          button {
             padding: 0;
             float: left;
             width: 50%;
             height: 72rpx;
-            line-height: 72rpx; 
+            line-height: 72rpx;
             text-align: center;
             font-size: 28rpx;
             font-weight: normal;
-            &.cancel{
+            &.cancel {
               color: #999999;
               background: #F9F9F9;
               border-radius: 0rpx 0rpx 0rpx 10rpx;
+              &::after {
+                border: none;
+              }
             }
-            &.confirm{
+            &.confirm {
               color: #FFFFFF;
               background: #0097E0;
               border-radius: 0rpx 0rpx 10rpx 0rpx;
-            }
-          }
-        }
-      }
-    }
-
-    .lc-list {
-      height: calc(100vh - 690rpx - 100rpx);
-      .lc-list-item {
-        position: relative;
-        height: 255rpx;
-        padding: 30rpx 40rpx;
-        box-sizing: border-box;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin-bottom: 20rpx;
-        &.disabled {
-          background: #EDEDED;
-        }
-        .type {
-          position: absolute;
-          width: 70rpx;
-          height: 70rpx;
-          top: 0;
-          left: 0;
-          image {
-            width: 100%;
-          }
-        }
-        .complete {
-          position: absolute;
-          width: 150rpx;
-          height: 150rpx;
-          top: -10rpx;
-          left: 444rpx;
-          image {
-            width: 100%;
-          }
-        }
-        .top {
-          width: 100%;
-          height: 68rpx;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          margin-bottom: 20rpx;
-          .bank-icon {
-            width: 50rpx;
-            height: 50rpx;
-            margin-right: 20rpx;
-            margin-bottom: 10rpx;
-            image {
-              width: 50rpx;
-            }
-          }
-          .bank-info {
-            flex: 1;
-            margin-right: 20rpx;
-            width: 470rpx;
-            .name {
-              height: 40rpx;
-              font-size: 28rpx;
-              font-weight: 800;
-              color: #000000;
-              line-height: 33rpx;
-            }
-            .time {
-              height: 28rpx;
-              font-size: 20rpx;
-              font-family: PingFang SC, PingFang SC;
-              font-weight: 500;
-              color: #999999;
-              line-height: 23rpx;
-            }
-          }
-          .bank-con {
-            width: 50rpx;
-            height: 50rpx;
-            margin-bottom: 30rpx;
-          }
-        }
-        .bottom {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          .item {
-            width: 260rpx;
-
-            &.last {
-              width: 110rpx;
-            }
-            .name {
-              height: 40rpx;
-              font-size: 28rpx;
-              font-weight: 500;
-              color: #666666;
-              line-height: 33rpx;
-              margin-bottom: 22rpx;
-            }
-            .num {
-              height: 30rpx;
-              font-size: 30rpx;
-              font-weight: 600;
-              color: #333333;
-              line-height: 35rpx;
-              &.danger {
-                color: #EA3935;
+              &::after {
+                border: none;
               }
             }
           }
         }
       }
     }
+
+  }
+
+  .lc-list {
+    // height: calc(100vh - 690rpx - 110rpx);
+    // height: 100vh;
+    .lc-list-item {
+      position: relative;
+      height: 255rpx;
+      padding: 30rpx 40rpx;
+      box-sizing: border-box;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 20rpx;
+      &.disabled {
+        background: #EDEDED;
+      }
+      .type {
+        position: absolute;
+        width: 70rpx;
+        height: 70rpx;
+        top: 0;
+        left: 0;
+        image {
+          width: 100%;
+        }
+      }
+      .complete {
+        position: absolute;
+        width: 150rpx;
+        height: 150rpx;
+        top: -10rpx;
+        left: 444rpx;
+        image {
+          width: 100%;
+        }
+      }
+      .top {
+        width: 100%;
+        height: 68rpx;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 20rpx;
+        .bank-icon {
+          width: 50rpx;
+          height: 50rpx;
+          margin-right: 20rpx;
+          margin-bottom: 10rpx;
+          image {
+            width: 50rpx;
+            height: 50rpx;
+          }
+        }
+        .bank-info {
+          flex: 1;
+          margin-right: 20rpx;
+          width: 470rpx;
+          .name {
+            height: 40rpx;
+            font-size: 28rpx;
+            font-weight: 800;
+            color: #000000;
+            line-height: 33rpx;
+          }
+          .time {
+            height: 28rpx;
+            font-size: 20rpx;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 500;
+            color: #999999;
+            line-height: 23rpx;
+          }
+        }
+        .bank-con {
+          width: 50rpx;
+          height: 50rpx;
+          margin-bottom: 30rpx;
+        }
+      }
+      .bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .item {
+          width: 260rpx;
+
+          &.last {
+            width: 110rpx;
+          }
+          .name {
+            height: 40rpx;
+            font-size: 28rpx;
+            font-weight: 500;
+            color: #666666;
+            line-height: 33rpx;
+            margin-bottom: 22rpx;
+          }
+          .num {
+            height: 30rpx;
+            font-size: 30rpx;
+            font-weight: 600;
+            color: #333333;
+            line-height: 35rpx;
+            &.danger {
+              color: #EA3935;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.page-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
+}
+
+.no-more {
+  padding-bottom: 180rpx;
+}
+
+.nav-bar{
+  width: 100%;
+  height: 170rpx;
+  box-sizing: border-box;
+  padding-top: 100rpx;
+  background-color: #fff;
+  .nav-bar-title{
+    height: 50rpx;
+    font-size: 30rpx;
+    color: #333333;
+    line-height: 38rpx;
+    text-align: center;
+  }
+  .nav-bar-bt{
+    height: 20rpx;
+    background-color: #f7f7f7;;
   }
 }

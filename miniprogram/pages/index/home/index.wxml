@@ -1,9 +1,10 @@
+<wxs module="format" src="../../../utils/format.wxs"></wxs>
 <view class="home-page container">
   <!-- 系统信息 -->
   <!-- <view class="top-bar">
     <view class="title-space">
       <image class="" src="../../../assets/images/sys-logo.png" mode="widthFix">
-      </image>
+      </image>  
       <view class="sys-name"> 贸易金融跨行交易报价系统 </view>
     </view>
   </view> -->
@@ -20,7 +21,7 @@
       <swiper-item wx:for="{{ imgNewsData }}" wx:key="index">
         <image
           class="swiper-img"
-          src="../../../assets/images/swiper-1.png"
+          src="{{ BASE_URL_IMG}}{{ item.fileId }}"
           data-index="{{index}}"
           mode="aspectFill"
         ></image>
@@ -30,124 +31,337 @@
   <!-- 列表 -->
   <view class="lc-space rpx-30">
     <!-- 筛选条 -->
-    <view class="filter-bar-area">
-      <view class="filter-bar box-primary">
-        <view class="item">
-          <view class="name"> 方向 </view>
-          <view class="icon">
-            <image
-              class=""
-              src="../../../assets/images/icon-arrow-down.png"
-              mode="widthFix"
-            >
-            </image>
-          </view>
+    <t-sticky bind:scroll="handleScroll">
+      <view class="nav-bar" wx:if="{{showNavBar}}">
+        <view class="nav-bar-title">
+          首页
         </view>
-        <view class="item">
-          <view class="name"> 金额 </view>
-          <view class="icon">
-            <image
-              class=""
-              src="../../../assets/images/icon-arrow-down.png"
-              mode="widthFix"
-            >
-            </image>
-          </view>
-        </view>
-        <view class="item">
-          <view class="name"> 期限 </view>
-          <view class="icon">
-            <image
-              class=""
-              src="../../../assets/images/icon-arrow-down.png"
-              mode="widthFix"
-            >
-            </image>
-          </view>
-        </view>
-        <view class="item" bind:tap="handleClickMoreFilter">
-          <view class="name"> 筛选 </view>
-          <view class="icon">
-            <image
-              class=""
-              src="../../../assets/images/icon-arrow-filter.png"
-              mode="widthFix"
-            >
-            </image>
-          </view>
-        </view>
+        <view class="nav-bar-bt"></view>
       </view>
-      <view class="more-filter-bar" wx:if="{{showMoreFilter}}">
-        <view class="item">
-          <view class="title"> 方向 </view>
-          <view class="content">
-            <view class="btn active"> 收证 </view>
-            <view class="btn"> 出证 </view>
+      <view class="filter-bar-area">
+        <view class="filter-bar box-primary">
+          <view class="item" data-type="releaseType" bind:tap="onDropMenuShow">
+            <view class="name"> 方向 </view>
+            <view class="icon">
+              <image
+                class=""
+                src="../../../assets/images/icon-arrow-down.png"
+                mode="widthFix"
+              >
+              </image>
+            </view>
+          </view>
+          <view class="item" data-type="amount" bind:tap="onDropMenuShow">
+            <view class="name"> 金额 </view>
+            <view class="icon">
+              <image
+                class=""
+                src="../../../assets/images/icon-arrow-down.png"
+                mode="widthFix"
+              >
+              </image>
+            </view>
+          </view>
+          <view class="item" data-type="term" bind:tap="onDropMenuShow">
+            <view class="name"> 期限 </view>
+            <view class="icon">
+              <image
+                class=""
+                src="../../../assets/images/icon-arrow-down.png"
+                mode="widthFix"
+              >
+              </image>
+            </view>
+          </view>
+          <view class="item" bind:tap="handleClickMoreFilter">
+            <view class="name"> 筛选 </view>
+            <view class="icon">
+              <image
+                class=""
+                src="../../../assets/images/icon-arrow-filter.png"
+                mode="widthFix"
+              >
+              </image>
+            </view>
           </view>
         </view>
-        <view class="item">
-          <view class="title"> 期限 </view>
-          <view class="content">
-            <view class="btn active"> 1~3M </view>
-            <view class="btn"> 6M </view>
-            <view class="btn"> 9M </view>
-            <view class="btn"> 12M </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="title"> 方向 </view>
-          <view class="content">
-            <view class="btn active"> 国股 </view>
-            <view class="btn"> 城商 </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="title"> 金额 </view>
-          <view class="content">
-            <view class="btn active"> ≤1000万 </view>
-            <view class="btn"> 1000万~1亿 </view>
-            <view class="btn"> 1亿~3亿 </view>
-            <view class="btn"> 3亿以上 </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="title"> 报价（利率）</view>
-          <view class="content">
-            <view class="btn active"> 国股 </view>
-            <view class="btn"> 城商 </view>
-          </view>
-        </view>
-        <view class="item">
-          <button class="cancel" bind:tap="handleCloseMoreFilter">取消</button>
-          <button class="confirm">确定</button>
-        </view>
+
+        <view class="drop-down-menu fx" wx:if="{{releaseTypeDM}}">
+      <view
+        class="drop-down-item {{ releaseType === '' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="releaseType"
+        data-value=""
+      >
+        全部
+      </view>
+      <view
+        class="drop-down-item {{ releaseType === '1' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="releaseType"
+        data-value="1"
+      >
+        出证
+      </view>
+      <view
+        class="drop-down-item {{ releaseType === '2' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="releaseType"
+        data-value="2"
+      >
+        收证
       </view>
     </view>
-
+    <view class="drop-down-menu je" wx:if="{{amountDM}}">
+      <view
+        class="drop-down-item {{ amount === '' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="amount"
+        data-value=""
+      >
+        全部
+      </view>
+      <view
+        class="drop-down-item {{ amount === '1000' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="amount"
+        data-value="1000"
+      >
+        ≤1000万
+      </view>
+      <view
+        class="drop-down-item {{ amount === '1000-1' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="amount"
+        data-value="1000-1"
+      >
+        1000万~1亿
+      </view>
+      <view
+        class="drop-down-item {{ amount === '1-3' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="amount"
+        data-value="1-3"
+      >
+        1亿~3亿
+      </view>
+      <view
+        class="drop-down-item {{ amount === '3' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="amount"
+        data-value="3"
+      >
+        3亿以上
+      </view>
+    </view>
+    <view class="drop-down-menu qx" wx:if="{{termDM}}">
+      <view
+        class="drop-down-item {{ term === '' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="term"
+        data-value=""
+      >
+        全部
+      </view>
+      <view
+        class="drop-down-item {{ term === '3' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="term"
+        data-value="3"
+      >
+        3M
+      </view>
+      <view
+        class="drop-down-item {{ term === '6' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="term"
+        data-value="6"
+      >
+        6M
+      </view>
+      <view
+        class="drop-down-item {{ term === '9' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="term"
+        data-value="9"
+      >
+        9M
+      </view>
+      <view
+        class="drop-down-item {{ term === '12' ? 'active' : '' }}"
+        bind:tap="onCLickDropMenu"
+        data-type="term"
+        data-value="12"
+      >
+        12M
+      </view>
+    </view>
+        <view class="more-filter-bar" wx:if="{{showMoreFilter}}">
+          <view class="item">
+            <view class="title"> 方向 </view>
+            <view class="content">
+              <view
+                class="btn {{ releaseType === '' ? 'active' : '' }}"
+                bind:tap="onCLickFilter"
+                data-type="releaseType"
+                data-value=""
+              >
+                全部
+              </view>
+              <view
+                class="btn {{ releaseType === '1' ? 'active' : '' }}"
+                bind:tap="onCLickFilter"
+                data-type="releaseType"
+                data-value="1"
+              >
+                出证
+              </view>
+              <view
+                class="btn {{ releaseType === '2' ? 'active' : '' }}"
+                bind:tap="onCLickFilter"
+                data-type="releaseType"
+                data-value="2"
+              >
+                收证
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="title"> 期限 </view>
+            <view class="content" style="margin-bottom: 20rpx">
+              <view class="input-bar">
+                <input
+                  type="number"
+                  value="{{termLower}}"
+                  bind:change="onInputChange"
+                  data-type="termLower"
+                />
+                <view class="text"> M </view>
+              </view>
+              <view
+                style="margin-left: 10rpx; margin-right: 10rpx; margin-top: 5rpx"
+              >
+                ~
+              </view>
+              <view class="input-bar">
+                <input
+                  type="number"
+                  value="{{termUpper}}"
+                  bind:change="onInputChange"
+                  data-type="termUpper"
+                />
+                <view class="text"> M </view>
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="title"> 承兑行类型(多选) </view>
+            <view class="content">
+              <view
+                class="btn {{ showGG  ? 'active' : '' }}"
+                bind:tap="onCLickMultiFilter"
+                data-type="promiseOrgType"
+                data-value="1"
+              >
+                国股
+              </view>
+              <view
+                class="btn {{ showCS ? 'active' : '' }}"
+                bind:tap="onCLickMultiFilter"
+                data-type="promiseOrgType"
+                data-value="2"
+              >
+                城商
+              </view>
+              <view
+                class="btn {{ showNS ? 'active' : '' }}"
+                bind:tap="onCLickMultiFilter"
+                data-type="promiseOrgType"
+                data-value="3"
+              >
+                农商
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="title"> 金额 </view>
+            <view class="content" style="margin-bottom: 20rpx">
+              <view class="input-bar">
+                <input
+                  type="number"
+                  value="{{amountLower}}"
+                  bind:change="onInputChange"
+                  data-type="amountLower"
+                />
+                <view class="text"> 万 </view>
+              </view>
+              <view
+                style="margin-left: 10rpx; margin-right: 10rpx; margin-top: 5rpx"
+              >
+                ~
+              </view>
+              <view class="input-bar">
+                <input
+                  type="number"
+                  value="{{amountUpper}}"
+                  bind:change="onInputChange"
+                  data-type="amountUpper"
+                />
+                <view class="text"> 万 </view>
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="title"> 报价（利率）</view>
+            <view class="content" style="margin-bottom: 20rpx">
+              <view class="input-bar">
+                <input
+                  type="digit"
+                  value="{{rateLower}}"
+                  bind:change="onInputChange"
+                  data-type="rateLower"
+                />
+                <view class="text"> % </view>
+              </view>
+              <view
+                style="margin-left: 10rpx; margin-right: 10rpx; margin-top: 5rpx"
+              >
+                ~
+              </view>
+              <view class="input-bar">
+                <input
+                  type="digit"
+                  value="{{rateUpper}}"
+                  bind:change="onInputChange"
+                  data-type="rateUpper"
+                />
+                <view class="text"> % </view>
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <button class="cancel" bind:tap="handleResetMoreFilter">重置</button>
+            <button class="confirm" bind:tap="handleSubmitFilter">确定</button>
+          </view>
+        </view>
+      </view>
+    </t-sticky>
     <!-- 列表 -->
-    <scroll-view
-      wx:if="{{!showMoreFilter}}"
+    <view
       class="lc-list"
-      scroll-x="false"
-      scroll-y="false"
-      upper-threshold="50"
-      lower-threshold="50"
-      scroll-top="0"
-      scroll-left="0"
-      scroll-into-view=""
-      scroll-with-animation="false"
-      enable-back-to-top="false"
-      bindscrolltoupper=""
-      bindscrolltolower=""
-      bindscroll=""
     >
       <view
-        class="lc-list-item box-primary"
+        wx:for="{{list}}"
+        wx:key="index"
+        class="lc-list-item box-primary {{ item.status ==='2'?'disabled':'' }}"
         bind:tap="handleClickCard"
-        data-type="1"
+        data-type="{{ item.releaseType }}"
+        data-status="{{ item.status }}"
+        data-id="{{item.id}}"
       >
         <view class="type">
           <image
+            wx:if="{{item.releaseType ==='1'}}"
             src="../../../assets/images/icon-lc-sd.png"
             mode="widthFix"
             lazy-load="false"
@@ -155,47 +369,8 @@
             bindload=""
           >
           </image>
-        </view>
-        <view class="top">
-          <view class="bank-icon">
-            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
-            </image>
-          </view>
-          <view class="bank-info">
-            <view class="name text-overflow">
-              建设银行北京分行（朝阳支行）
-            </view>
-            <view class="time"> 2024-1-9 10:24:17 </view>
-          </view>
           <image
-            class="bank-con"
-            src="../../../assets/images/bank-con-log.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-        <view class="bottom">
-          <view class="item first">
-            <view class="name"> 金额（亿） </view>
-            <view class="num text-overflow"> 1.23 </view>
-          </view>
-          <view class="item mid">
-            <view class="name"> 报价（利率） </view>
-            <view class="num danger text-overflow"> 3.17% </view>
-          </view>
-          <view class="item last">
-            <view class="name"> 期限 </view>
-            <view class="num text-overflow"> 8M </view>
-          </view>
-        </view>
-      </view>
-      <view
-        class="lc-list-item box-primary"
-        bind:tap="handleClickCard"
-        data-type="2"
-      >
-        <view class="type">
-          <image
+            wx:if="{{item.releaseType ==='2'}}"
             src="../../../assets/images/icon-lc-rec.png"
             mode="widthFix"
             lazy-load="false"
@@ -204,49 +379,7 @@
           >
           </image>
         </view>
-        <view class="top">
-          <view class="bank-icon">
-            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
-            </image>
-          </view>
-          <view class="bank-info">
-            <view class="name text-overflow"> 桂林银行南宁分行 </view>
-            <view class="time"> 2024-1-9 10:24:17 </view>
-          </view>
-          <image
-            class="bank-con"
-            src="../../../assets/images/bank-con-log.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-        <view class="bottom">
-          <view class="item">
-            <view class="name"> 金额（亿） </view>
-            <view class="num text-overflow"> 123.456~567.789 </view>
-          </view>
-          <view class="item">
-            <view class="name"> 报价（利率） </view>
-            <view class="num danger text-overflow"> 3.41%~3.62% </view>
-          </view>
-          <view class="item last">
-            <view class="name"> 期限 </view>
-            <view class="num text-overflow"> 11~12M </view>
-          </view>
-        </view>
-      </view>
-      <view class="lc-list-item box-primary disabled">
-        <view class="type">
-          <image
-            src="../../../assets/images/icon-lc-rec.png"
-            mode="widthFix"
-            lazy-load="false"
-            binderror=""
-            bindload=""
-          >
-          </image>
-        </view>
-        <view class="complete">
+        <view class="complete" wx:if="{{item.status ==='2'}}">
           <image
             src="../../../assets/images/logo-complete.png"
             mode="widthFix"
@@ -256,14 +389,15 @@
           >
           </image>
         </view>
+
         <view class="top">
           <view class="bank-icon">
-            <image src="../../../assets/images/bank-logo.png" mode="widthFix">
-            </image>
+            <!-- <image src="../../../assets/images/bank-logo.png" mode="widthFix" /> -->
+            <image src="{{BASE_URL_IMG + item.logo}}" mode="scaleToFill" />
           </view>
           <view class="bank-info">
-            <view class="name text-overflow"> 桂林银行南宁分行 </view>
-            <view class="time"> 2024-1-9 10:24:17 </view>
+            <view class="name text-overflow"> {{ item.releaseOrgName }} </view>
+            <view class="time">{{ item.createTime }}</view>
           </view>
           <image
             class="bank-con"
@@ -272,22 +406,63 @@
           >
           </image>
         </view>
-        <view class="bottom">
-          <view class="item">
-            <view class="name"> 金额（亿） </view>
-            <view class="num text-overflow"> 123.456~567.789 </view>
+        <view class="bottom" wx:if="{{item.releaseType === '1'}}">
+          <view class="item first">
+            <view class="name"> 金额（万元） </view>
+            <view class="num text-overflow">
+              {{ format.thousands(item.amountUpper) }}</view
+            >
           </view>
-          <view class="item">
+          <view class="item mid">
             <view class="name"> 报价（利率） </view>
-            <view class="num danger text-overflow"> 3.41%~3.62% </view>
+            <view class="num danger text-overflow">
+              {{ item.rateUpper }}%
+            </view>
           </view>
           <view class="item last">
             <view class="name"> 期限 </view>
-            <view class="num text-overflow"> 11~12M </view>
+            <view class="num text-overflow"> {{ item.termUpper }}M </view>
+          </view>
+        </view>
+        <view class="bottom" wx:if="{{item.releaseType === '2'}}">
+          <view class="item">
+            <view class="name"> 金额（万元） </view>
+            <view class="num text-overflow" wx:if="{{item.amountLower===item.amountUpper }}">
+              {{ format.thousands(item.amountUpper) }}
+            </view>
+            <view class="num text-overflow" wx:else>
+              {{ format.thousands(item.amountLower) }}~{{
+              format.thousands(item.amountUpper) }}
+            </view>
+          </view>
+          <view class="item">
+            <view class="name"> 报价（利率） </view>
+            <view class="num danger text-overflow" wx:if="{{item.rateLower===item.rateUpper }}">
+              {{ item.rateUpper }}%
+            </view>
+            <view class="num danger text-overflow" wx:else>
+              {{ item.rateLower }}~{{ item.rateUpper }}%
+            </view>
+          </view>
+          <view class="item last">
+            <view class="name"> 期限 </view>
+            <view class="num text-overflow" wx:if="{{item.termLower===item.termUpper }}">
+              {{ item.termUpper }}M
+            </view>
+            <view class="num text-overflow" wx:else>
+              {{ item.termLower }}~{{ item.termUpper }}M
+            </view>
           </view>
         </view>
       </view>
-      <view class="no-more"> 暂无更多 </view>
-    </scroll-view>
+      <view class="no-more" wx:if="{{no_more}}"> 暂无更多 </view>
+      <view wx:if="{{ !isLoading && !list.length }}">
+        <view class="yoshop-notcont">
+          <text class="cont">亲，暂时没有发布的信息哦！</text>
+        </view>
+      </view>
+    </view>
   </view>
+  <!-- <view wx:if="{{showLayer}}" class="page-wrap" catch:tap="closeLayer" catchtouchmove="{{showLayer ? true :return}}"></view> -->
+  <view wx:if="{{showLayer}}" class="page-wrap" catch:tap="closeLayer"></view>
 </view>
