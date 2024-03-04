@@ -1,19 +1,21 @@
-<view class="chat-room-page container">
+<wxs module="format" src="../../../utils/format.wxs"></wxs>
+<view class="chat-room-page container {{ showPage?'showPage':'' }}">
   <scroll-view
     class="chat-room-list rpx-30"
     scroll-x="false"
     scroll-y="false"
     upper-threshold="50"
     lower-threshold="50"
-    scroll-top="0"
-    scroll-left="0"
-    scroll-into-view=""
+    scroll-top="{{scrollTop}}"
+    scroll-into-view="{{getindexid}}"
     scroll-with-animation="false"
     enable-back-to-top="false"
-    bindscrolltoupper=""
-    bindscrolltolower=""
+    bindscrolltoupper="onScrollToUpper"
     bindscroll=""
   >
+    <view class="loading-container-flex" wx:if="{{showLoading}}">
+      <t-loading theme="circular" size="40rpx" class="wrapper" />
+    </view>
     <!-- message-opposing-normal -->
     <view
       class="chat-room-msg-list"
@@ -21,69 +23,90 @@
       hover-stop-propagation="false"
     >
       <view
-        class="chat-room-msg"
+        wx:for="{{connectchat}}"
+        wx:key="index"
+        class="chat-room-msg {{ item.sendUserId === userId ? 'my' : '' }} {{ item.msgType != 1 ? 'confirm' : '' }}"
         hover-class="none"
         hover-stop-propagation="false"
       >
-        <view class="head-avtar">
+        <!-- message-mine-normal -->
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==1 && item.sendUserId !== userId}}"
+        >
           <image
             class=""
-            src="../../../assets/images/head-avtar.png"
+            src="{{item.avatarFileId? BASE_URL_IMG+item.avatarFileId:'../../../assets/images/head-avtar.png'}}"
             mode="widthFix"
+            binderror="onImgErr"
           >
           </image>
         </view>
-        <view class="info">
+        <view
+          class="info"
+          wx:if="{{item.msgType ==1 && item.sendUserId !== userId}}"
+        >
           <view class="title">
-            <view class="name"> 陈晓 </view>
-            <view class="bank"> 桂林银行南宁分行 </view>
+            <view class="name"> {{ item.nickname }} </view>
+            <view class="bank"> {{item.orgName}} </view>
           </view>
-          <view class="msg"> 你好啊，王总你好啊</view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
+          <view class="msg"> {{item.content}}</view>
+          <view class="time"> {{ item.updateTime }}</view>
         </view>
-      </view>
-      <!-- message-mine-normal -->
-      <view
-        class="chat-room-msg my"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="info">
-          <view class="msg"> 你好，陈总</view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
+        <!-- message-mine-normal -->
+        <view
+          class="info right-side"
+          wx:if="{{item.msgType ==1 && item.sendUserId === userId}}"
+        >
+          <view class="msg"> {{item.content}}</view>
+          <view class="time"> {{ item.updateTime }} </view>
         </view>
-        <view class="head-avtar">
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==1 && item.sendUserId === userId}}"
+        >
           <image
             class=""
-            src="../../../assets/images/head-avtar.png"
+            src="{{ avatarFileId?headImg:'../../../assets/images/head-avtar.png' }}"
             mode="widthFix"
           >
           </image>
         </view>
-      </view>
-      <!-- message-opposing-lcInfo -->
-      <view
-        class="chat-room-msg"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="head-avtar">
+        <!-- message-opposing-lcInfo -->
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==3 && item.sendUserId !== userId}}"
+        >
           <image
             class=""
-            src="../../../assets/images/head-avtar.png"
+            src="{{item.avatarFileId? BASE_URL_IMG+item.avatarFileId:'../../../assets/images/head-avtar.png'}}"
             mode="widthFix"
+            binderror="onImgErr"
           >
           </image>
         </view>
-        <view class="info">
+        <view
+          class="info"
+          wx:if="{{item.msgType ==3 && item.sendUserId !== userId}}"
+        >
           <view class="title">
-            <view class="name"> 陈晓 </view>
-            <view class="bank"> 桂林银行南宁分行 </view>
+            <view class="name"> {{ item.nickname }} </view>
+            <view class="bank"> {{item.orgName}} </view>
           </view>
           <view class="msg lc-info">
             <view class="type">
               <image
+                wx:if="{{item.releaseType == 1}}"
                 src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+              <image
+                wx:if="{{item.releaseType == 2}}"
+                src="../../../assets/images/icon-lc-rec-1.png"
                 mode="widthFix"
                 lazy-load="false"
                 binderror=""
@@ -92,99 +115,184 @@
               </image>
             </view>
             <view class="item">
-              <view class="left"> 机构 </view>
-              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+              <view class="left"> 发布机构 </view>
+              <view class="right"> {{ item.releaseOrgName }} </view>
             </view>
             <view class="item">
               <view class="left"> 金额（万） </view>
-              <view class="right"> 123,456.78 </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper === item.amountLower}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper !== item.amountLower}}"
+                >{{ format.thousands(item.amountLower) }} ~ {{
+                format.thousands(item.amountUpper) }}
+              </view>
             </view>
             <view class="item">
               <view class="left"> 报价（利率） </view>
-              <view class="right"> 3.17% </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower === item.rateUpper}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower !== item.rateUpper}}">
+                {{ item.rateLower }} ~ {{ item.rateUpper }}%
+              </view>
             </view>
             <view class="item">
               <view class="left"> 期限 </view>
-              <view class="right"> 8M </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower === item.termUpper}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower !== item.termUpper}}">
+                {{ item.termLower }} ~ {{ item.termUpper }}M
+              </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 1}}">
+              <view class="left"> 承兑行 </view>
+              <view class="right"> {{ item.promiseOrgName }} </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 2}}">
+              <view class="left"> 承兑行类型 </view>
+              <view class="right">
+                {{ format.forMatPromiseOrgType(item.promiseOrgType) }}
+              </view>
             </view>
           </view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
+          <view class="time"> {{ item.updateTime }} </view>
         </view>
-      </view>
-
-      <view
-        class="chat-room-msg"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="head-avtar">
-          <image
-            class=""
-            src="../../../assets/images/head-avtar.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-        <view class="info">
-          <view class="title">
-            <view class="name"> 陈晓 </view>
-            <view class="bank"> 桂林银行南宁分行 </view>
-          </view>
-          <view class="msg"> 这个证我们有意向，可以聊聊吗？</view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
-        </view>
-      </view>
-
-      <view
-        class="chat-room-msg my"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="info">
-          <view class="msg"
-            >可以呀陈总，非常欢迎！如果卡片详情内的基本情况符合你们的需求，我们可以针对细节沟通。</view
-          >
-          <view class="time"> 2024-1-9 10:53:14 </view>
-        </view>
-        <view class="head-avtar">
-          <image
-            class=""
-            src="../../../assets/images/head-avtar.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-      </view>
-
-      <view
-        class="chat-room-msg"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="head-avtar">
-          <image
-            class=""
-            src="../../../assets/images/head-avtar.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-        <view class="info">
-          <view class="title">
-            <view class="name"> 陈晓 </view>
-            <view class="bank"> 桂林银行南宁分行 </view>
-          </view>
-          <view class="msg"> 这个证我们有意向，可以聊聊吗？</view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
-        </view>
-      </view>
-      <!-- message-opposing-lcInfo-confirm -->
-      <view class="chat-room-msg my confirm">
-        <view class="info">
+        <!-- message-mine-lcInfo -->
+        <view
+          class="info"
+          wx:if="{{item.msgType ==3 && item.sendUserId === userId}}"
+        >
           <view class="msg lc-info">
             <view class="type">
               <image
+                wx:if="{{item.releaseType == 1}}"
                 src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+              <image
+                wx:if="{{item.releaseType == 2}}"
+                src="../../../assets/images/icon-lc-rec-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+            </view>
+            <view class="item">
+              <view class="left"> 发布机构 </view>
+              <view class="right"> {{ item.releaseOrgName }} </view>
+            </view>
+            <view class="item">
+              <view class="left"> 金额（万） </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper === item.amountLower}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper !== item.amountLower}}"
+                >{{ format.thousands(item.amountLower) }} ~ {{
+                format.thousands(item.amountUpper) }}
+              </view>
+            </view>
+            <view class="item">
+              <view class="left"> 报价（利率） </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower === item.rateUpper}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower !== item.rateUpper}}">
+                {{ item.rateLower }} ~ {{ item.rateUpper }}%
+              </view>
+            </view>
+            <view class="item">
+              <view class="left"> 期限 </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower === item.termUpper}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower !== item.termUpper}}">
+                {{ item.termLower }} ~ {{ item.termUpper }}M
+              </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 1}}">
+              <view class="left"> 承兑行 </view>
+              <view class="right"> {{ item.promiseOrgName }} </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 2}}">
+              <view class="left"> 承兑行类型 </view>
+              <view class="right">
+                {{ format.forMatPromiseOrgType(item.promiseOrgType) }}
+              </view>
+            </view>
+          </view>
+          <view class="time"> {{ item.updateTime }} </view>
+        </view>
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==3 && item.sendUserId === userId}}"
+        >
+          <image
+            class=""
+            src="{{ avatarFileId?headImg:'../../../assets/images/head-avtar.png' }}"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <!-- message-opposing-lcInfo -->
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==2 && item.sendUserId !== userId}}"
+        >
+          <image
+            class=""
+            src="{{item.avatarFileId? BASE_URL_IMG+item.avatarFileId:'../../../assets/images/head-avtar.png'}}"
+            mode="widthFix"
+          >
+          </image>
+        </view>
+        <view
+          class="info"
+          wx:if="{{item.msgType ==2 && item.sendUserId !== userId}}"
+        >
+          <view class="title">
+            <view class="name"> {{ item.nickname }} </view>
+            <view class="bank"> {{item.orgName}} </view>
+          </view>
+          <view class="msg lc-info">
+            <view class="type">
+              <image
+                wx:if="{{item.releaseType == 1}}"
+                src="../../../assets/images/icon-lc-sd-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
+              <image
+                wx:if="{{item.releaseType == 2}}"
+                src="../../../assets/images/icon-lc-rec-1.png"
                 mode="widthFix"
                 lazy-load="false"
                 binderror=""
@@ -194,47 +302,105 @@
             </view>
             <view class="comfirm-title"> 请确认是否达成 </view>
             <view class="item">
-              <view class="left"> 机构 </view>
-              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+              <view class="left"> 发布机构 </view>
+              <view class="right"> {{ item.releaseOrgName }} </view>
             </view>
             <view class="item">
               <view class="left"> 金额（万） </view>
-              <view class="right"> 123,456.78 </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper === item.amountLower}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper !== item.amountLower}}"
+                >{{ format.thousands(item.amountLower) }} ~ {{
+                format.thousands(item.amountUpper) }}
+              </view>
             </view>
             <view class="item">
               <view class="left"> 报价（利率） </view>
-              <view class="right"> 3.17% </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower === item.rateUpper}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower !== item.rateUpper}}">
+                {{ item.rateLower }} ~ {{ item.rateUpper }}%
+              </view>
             </view>
             <view class="item">
               <view class="left"> 期限 </view>
-              <view class="right"> 8M </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower === item.termUpper}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower !== item.termUpper}}">
+                {{ item.termLower }} ~ {{ item.termUpper }}M
+              </view>
             </view>
-            <view class="operate-area">
-              <button class="comfirm">确认</button>
-              <button class="reject">拒绝</button>
+            <view class="item" wx:if="{{item.releaseType == 1}}">
+              <view class="left"> 承兑行 </view>
+              <view class="right"> {{ item.promiseOrgName }} </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 2}}">
+              <view class="left"> 承兑行类型 </view>
+              <view class="right">
+                {{ format.forMatPromiseOrgType(item.promiseOrgType) }}
+              </view>
+            </view>
+            <view
+              wx:if="{{!(orgType == 2&& item.status == 4)}}"
+              class="operate-area"
+            >
+              <button
+                class="comfirm"
+                wx:if="{{ item.status == 4 && orgType == 1}}"
+                bind:tap="onMessageComfirm"
+                data-id="{{item.id}}"
+                data-status="1"
+                data-index="{{index}}"
+              >
+                确认
+              </button>
+              <button
+                class="reject"
+                wx:if="{{ item.status == 4 && orgType == 1}}"
+                bind:tap="onMessageComfirm"
+                data-id="{{item.id}}"
+                data-status="2"
+                data-index="{{index}}"
+              >
+                拒绝
+              </button>
+              <button wx:if="{{item.status == 3}}" class="diabled">
+                已与其他人达成
+              </button>
+              <button wx:if="{{item.status == 0}}" class="diabled">
+                已下架
+              </button>
+              <button wx:if="{{item.status == 1}}" class="diabled">
+                已确认
+              </button>
+              <button wx:if="{{item.status == 2}}" class="diabled">
+                已拒绝
+              </button>
             </view>
           </view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
+          <view class="time"> {{ item.updateTime }} </view>
         </view>
-        <view class="head-avtar">
-          <image
-            class=""
-            src="../../../assets/images/head-avtar.png"
-            mode="widthFix"
-          >
-          </image>
-        </view>
-      </view>
-      <!-- message-opposing-lcInfo-confirm -->
-      <view
-        class="chat-room-msg my confirm"
-        hover-class="none"
-        hover-stop-propagation="false"
-      >
-        <view class="info">
+        <!-- message-mine-lcInfo -->
+        <view
+          class="info"
+          wx:if="{{item.msgType ==2 && item.sendUserId === userId}}"
+        >
           <view class="msg lc-info">
             <view class="type">
               <image
+                wx:if="{{item.releaseType == 1}}"
                 src="../../../assets/images/icon-lc-sd-1.png"
                 mode="widthFix"
                 lazy-load="false"
@@ -242,34 +408,92 @@
                 bindload=""
               >
               </image>
+              <image
+                wx:if="{{item.releaseType == 2}}"
+                src="../../../assets/images/icon-lc-rec-1.png"
+                mode="widthFix"
+                lazy-load="false"
+                binderror=""
+                bindload=""
+              >
+              </image>
             </view>
-            <view class="comfirm-title"> 请确认是否达成 </view>
+            <view class="comfirm-title"> 对方确认是否达成 </view>
             <view class="item">
-              <view class="left"> 机构 </view>
-              <view class="right"> 青岛银行股份有限公司东海西路 </view>
+              <view class="left"> 发布机构 </view>
+              <view class="right"> {{ item.releaseOrgName }} </view>
             </view>
             <view class="item">
               <view class="left"> 金额（万） </view>
-              <view class="right"> 123,456.78 </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper === item.amountLower}}"
+                >{{ format.thousands(item.amountUpper) }}
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.amountUpper !== item.amountLower}}"
+                >{{ format.thousands(item.amountLower) }} ~ {{
+                format.thousands(item.amountUpper) }}
+              </view>
             </view>
             <view class="item">
               <view class="left"> 报价（利率） </view>
-              <view class="right"> 3.17% </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower === item.rateUpper}}">
+                {{ item.rateUpper }}%
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.rateLower !== item.rateUpper}}">
+                {{ item.rateLower }} ~ {{ item.rateUpper }}%
+              </view>
             </view>
             <view class="item">
               <view class="left"> 期限 </view>
-              <view class="right"> 8M </view>
+              <view class="right" wx:if="{{item.releaseType == 1}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower === item.termUpper}}">
+                {{ item.termUpper }}M
+              </view>
+              <view class="right" wx:if="{{item.releaseType == 2 && item.termLower !== item.termUpper}}">
+                {{ item.termLower }} ~ {{ item.termUpper }}M
+              </view>
             </view>
-            <view class="operate-area">
-              <button class="diabled">已与其他人达成</button>
+            <view class="item" wx:if="{{item.releaseType == 1}}">
+              <view class="left"> 承兑行 </view>
+              <view class="right"> {{ item.promiseOrgName }} </view>
+            </view>
+            <view class="item" wx:if="{{item.releaseType == 2}}">
+              <view class="left"> 承兑行类型 </view>
+              <view class="right">
+                {{ format.forMatPromiseOrgType(item.promiseOrgType) }}
+              </view>
+            </view>
+            <view class="operate-area" wx:if="{{ item.status - 0 < 4 }}">
+              <button wx:if="{{item.status == 3}}" class="diabled">
+                已与其他人达成
+              </button>
+              <button wx:if="{{item.status == 0}}" class="diabled">
+                已下架
+              </button>
+              <button wx:if="{{item.status == 1}}" class="diabled">
+                已确认
+              </button>
+              <button wx:if="{{item.status == 2}}" class="diabled">
+                已拒绝
+              </button>
             </view>
           </view>
-          <view class="time"> 2024-1-9 10:53:14 </view>
+          <view class="time"> {{ item.updateTime }} </view>
         </view>
-        <view class="head-avtar">
+        <view
+          class="head-avtar"
+          wx:if="{{item.msgType ==2 && item.sendUserId === userId}}"
+        >
           <image
             class=""
-            src="../../../assets/images/head-avtar.png"
+            src="{{ avatarFileId?headImg:'../../../assets/images/head-avtar.png' }}"
             mode="widthFix"
           >
           </image>
@@ -277,7 +501,8 @@
       </view>
     </view>
   </scroll-view>
-  <view class="chat-room-input-space">
+
+  <view class="chat-room-input-space" wx:if="{{orgType==1}}">
     <button class="choose-type" bind:tap="handleClickChooseType">
       <image src="../../../assets/images/icon-choose-type.png" mode="widthFix">
       </image>
@@ -288,8 +513,10 @@
       confirm-type="send"
       cursor-spacing="10"
       bindconfirm="handleClickInputConfirm"
+      value="{{ inputValue }}"
+      bind:input="onInputChange"
     />
-    <button class="send">发送</button>
+    <button class="send" bind:tap="handleClickInputConfirmBtn">发送</button>
   </view>
   <page-container
     show="{{showPopup}}"
@@ -303,19 +530,39 @@
       </view>
       <view class="title"> 请选择要沟通的资产 </view>
       <view class="list-taps">
-        <view class="list-taps-item active">
+        <view
+          class="list-taps-item {{tabs ==='1'?'active':''}}"
+          bind:tap="onTapsChange"
+          data-tabs="1"
+          data-type="1"
+        >
           <view class="name"> 我的出 </view>
           <view class="line"> </view>
         </view>
-        <view class="list-taps-item">
+        <view
+          class="list-taps-item {{tabs ==='2'?'active':''}}"
+          bind:tap="onTapsChange"
+          data-tabs="2"
+          data-type="2"
+        >
           <view class="name"> 我的收 </view>
           <view class="line"> </view>
         </view>
-        <view class="list-taps-item">
+        <view
+          class="list-taps-item {{tabs ==='3'?'active':''}}"
+          bind:tap="onTapsChange"
+          data-tabs="3"
+          data-type="1"
+        >
           <view class="name"> TA的出 </view>
           <view class="line"> </view>
         </view>
-        <view class="list-taps-item">
+        <view
+          class="list-taps-item {{tabs ==='4'?'active':''}}"
+          bind:tap="onTapsChange"
+          data-tabs="4"
+          data-type="2"
+        >
           <view class="name"> TA的收 </view>
           <view class="line"> </view>
         </view>
@@ -332,50 +579,97 @@
         scroll-with-animation="false"
         enable-back-to-top="false"
         bindscrolltoupper=""
-        bindscrolltolower=""
+        bindscrolltolower="bindDownLoad"
         bindscroll=""
       >
-        <view class="lc-item box-primary">
+        <view class="lc-item box-primary" wx:for="{{list}}" wx:key="index">
           <view class="top">
             <view class="item first">
-              <view class="name"> 金额（亿） </view>
-              <view class="num text-overflow"> 1.23 </view>
+              <view class="name"> 金额（万） </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '1'}}"
+              >
+                {{format.thousands(item.amountUpper)}}
+              </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '2' && item.amountLower === item.amountUpper}}"
+              >
+                {{format.thousands(item.amountUpper)}}
+              </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '2' && item.amountLower !== item.amountUpper}}"
+              >
+                {{ format.thousands(item.amountLower) }}~{{
+                format.thousands(item.amountUpper) }}
+              </view>
             </view>
             <view class="item mid">
               <view class="name"> 报价（利率） </view>
-              <view class="num danger text-overflow"> 3.17% </view>
+              <view
+                class="num danger text-overflow"
+                wx:if="{{item.releaseType === '1'}}"
+              >
+                {{ item.rateUpper }}%
+              </view>
+              <view
+                class="num danger text-overflow"
+                wx:if="{{item.releaseType === '2' && item.rateLower === item.rateUpper}}"
+              >
+                {{ item.rateUpper }}%
+              </view>
+              <view
+                class="num danger text-overflow"
+                wx:if="{{item.releaseType === '2' && item.rateLower !== item.rateUpper}}"
+              >
+                {{ item.rateLower }}~{{ item.rateUpper }}%
+              </view>
             </view>
             <view class="item last">
               <view class="name"> 期限 </view>
-              <view class="num text-overflow"> 8M </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '1'}}"
+                >{{ item.termUpper }}M
+              </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '2' && item.termLower === item.termUpper}}"
+                >{{ item.termUpper }}M
+              </view>
+              <view
+                class="num text-overflow"
+                wx:if="{{item.releaseType === '2' && item.termLower !== item.termUpper}}"
+                >{{ item.termLower }}~{{ item.termUpper }}M
+              </view>
             </view>
           </view>
           <view class="operate-area">
-            <button class="send">发送</button>
-            <button class="confirm">发起确认</button>
+            <button
+              class="send"
+              bind:tap="handleSendLC"
+              data-id="{{ item.id }}"
+            >
+              发送
+            </button>
+            <button
+              class="confirm"
+              wx:if="{{item.releaseType === '1' && tabs == 1}}"
+              bind:tap="handleComfirmLC"
+              data-id="{{ item.id }}"
+            >
+              发起达成确认
+            </button>
           </view>
         </view>
-        <view class="lc-item box-primary">
-          <view class="top">
-            <view class="item first">
-              <view class="name"> 金额（亿） </view>
-              <view class="num text-overflow"> 1.23 </view>
-            </view>
-            <view class="item mid">
-              <view class="name"> 报价（利率） </view>
-              <view class="num danger text-overflow"> 3.17% </view>
-            </view>
-            <view class="item last">
-              <view class="name"> 期限 </view>
-              <view class="num text-overflow"> 8M </view>
-            </view>
-          </view>
-          <view class="operate-area">
-            <button class="send">发送</button>
-            <button class="confirm">发起确认</button>
+        <view class="no-more" wx:if="{{no_more}}"> 暂无更多 </view>
+        <view wx:if="{{ !isLoading && !list.length }}">
+          <view class="yoshop-notcont">
+            <text class="cont">亲，暂时没有发布的信息哦！</text>
           </view>
         </view>
-        <view class="no-more"> 暂无更多 </view>
       </scroll-view>
     </view>
   </page-container>

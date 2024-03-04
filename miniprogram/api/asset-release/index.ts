@@ -73,7 +73,7 @@ export const getAssetReleaseDetail = (params: ReleaseId) =>
  * 
 */  
 export const getOrgInfoList = (params: OrgListParam) =>
-  request<OrgListParam, OrgInfoVO[]>({
+  request<OrgListParam, PageResult<OrgInfoVO[]>>({
     method: 'POST',
     url: '/member/member/business/org-info/list',
     data: params

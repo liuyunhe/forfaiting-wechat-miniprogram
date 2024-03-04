@@ -1,13 +1,18 @@
 .chat-room-page {
+  visibility: hidden;
   padding-top: 30rpx;
+  &.showPage{
+    visibility: initial;
+  }
   .chat-room-list {
     width: 100%;
     height: calc(100vh - 166rpx);
     box-sizing: border-box;
+    padding-bottom: 10rpx;
     .chat-room-msg {
       display: flex;
       padding-bottom: 25rpx;
-      margin-right: 120rpx;
+      margin-right: 90rpx;
       margin-left: 0;
       &.my {
         margin-right: 0;
@@ -24,6 +29,11 @@
           }
           .time {
             text-align: right;
+          }
+          &.right-side{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
           }
         }
         &.confirm {
@@ -50,6 +60,7 @@
         margin-right: 10rpx;
         margin-left: 0;
         image {
+          border-radius: 50%;
           width: 100%;
         }
       }
@@ -85,7 +96,16 @@
           box-shadow: 0rpx 4rpx 6rpx 0rpx rgba(84, 84, 84, 0.08);
           border-radius: 10rpx 10rpx 10rpx 10rpx;
           text-align: justify;
-
+          word-break: break-all;
+          .comfirm-title {
+              width: 100%;
+              height: 39rpx;
+              font-size: 28rpx;
+              font-weight: 500;
+              color: #333333;
+              line-height: 33rpx;
+              margin-bottom: 17rpx;
+            }
           &.lc-info {
             position: relative;
             width: 508rpx;
@@ -350,4 +370,23 @@
       margin-top: 30rpx;
     }
   }
+}
+.loading-container-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
 }
