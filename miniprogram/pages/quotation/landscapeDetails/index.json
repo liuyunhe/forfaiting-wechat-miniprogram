@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ec-canvas":"../../../components/echarts/ec-canvas"
+  },
+  "navigationBarTitleText": "数据分析",
+  "backgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "pageOrientation":"landscape"
+}

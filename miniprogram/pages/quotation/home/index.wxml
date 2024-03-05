@@ -2,48 +2,47 @@
   <view class="quotation-page-spance">
     <!-- 图表 -->
     <view class="echart-space box-primary">
-      <ec-canvas id="mychart-dom-bar" canvas-id="echart-bar" ec="{{ec}}"></ec-canvas>
+      <ec-canvas  wx:if="{{showEC}}" id="mychart-dom-bar" canvas-id="echart-bar" ec="{{ec}}"></ec-canvas>
     </view>
     <!-- 表格 -->
     <view class="table-space box-primary">
       <view class="title">
-        <view class="name"> 机构名称 </view>
+        <view class="name bank"> 机构名称 </view>
         <view class="name"> 3M </view>
         <view class="name"> 6M </view>
         <view class="name"> 12M </view>
-        <view class="name"> </view>
+        <view class="name details"> </view>
       </view>
-      <view class="line">
-        <view class="value"> 工商银行 </view>
-        <view class="value"> 1.92% </view>
-        <view class="value"> 1.87% </view>
-        <view class="value"> 2.03% </view>
-        <view class="value details" bind:tap="handleClickDetails"> 详情 > </view>
-      </view>
-      <view class="line">
-        <view class="value"> 工商银行 </view>
-        <view class="value"> 1.92% </view>
-        <view class="value"> 1.87% </view>
-        <view class="value"> 2.03% </view>
-        <view class="value details"> 详情 > </view>
-      </view>
-      <view class="line">
-        <view class="value"> 工商银行 </view>
-        <view class="value"> 1.92% </view>
-        <view class="value"> 1.87% </view>
-        <view class="value"> 2.03% </view>
-        <view class="value details"> 详情 > </view>
-      </view>
-      <view class="line">
-        <view class="value"> 工商银行 </view>
-        <view class="value"> 1.92% </view>
-        <view class="value"> 1.87% </view>
-        <view class="value"> 2.03% </view>
-        <view class="value details"> 详情 > </view>
-      </view>
-      <view class="no-more">
-        暂无更多
-      </view>
+      <!-- 列表 -->
+      <scroll-view
+        class="lc-list"
+        scroll-x="false"
+        scroll-y="false"
+        upper-threshold="50"
+        lower-threshold="50"
+        scroll-top="{{ scrollTop }}"
+        scroll-left="0"
+        scroll-into-view=""
+        scroll-with-animation="false"
+        enable-back-to-top="false"
+        bindscrolltoupper=""
+        bindscrolltolower="bindDownLoad"
+        bindscroll=""
+      >
+        <view class="line" wx:for="{{list}}" wx:key="index">
+          <view class="value bank"> {{item.orgTypeName}} </view>
+          <view class="value"> {{item.marchRate}}% </view>
+          <view class="value"> {{ item.juneRate }}% </view>
+          <view class="value"> {{ item.decemberRate }}% </view>
+          <view class="value details" bind:tap="handleClickDetails" data-code="{{ item.orgTypeCode }}" data-name="{{ item.orgTypeName }}"> 详情  </view>
+        </view>
+        <view class="no-more" wx:if="{{no_more}}"> 暂无更多 </view>
+        <view wx:if="{{ !isLoading && !list.length }}">
+          <view class="yoshop-notcont">
+            <text class="cont">亲，暂时没有发布的信息哦！</text>
+          </view>
+        </view>
+        </scroll-view>
     </view>
   </view>
 </view>

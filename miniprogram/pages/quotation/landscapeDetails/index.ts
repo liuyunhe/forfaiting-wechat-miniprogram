@@ -1,11 +1,12 @@
-import { getAllSevenCurve, getSevenList } from '../../../api/quotation/index'
-import { updateIndex } from '../../../utils/tab-service'
+// pages/my/newMarket/index.js
+
+import { getOrgSevenCurve } from "../../../api/quotation/index";
 const App = getApp<IAppOption>()
 export {}
 const echarts = require('../../../components/echarts/echarts.min.js')
 const option = {
   title: {
-    text: '各机构近7天平均报价',
+    text: '',
     left: 10
   },
   color: ['#DA5D9E', '#683D8B', '#0097E0'],
@@ -84,27 +85,30 @@ function bar(canvas: any, width: number, height: number, dpr: number) {
   console.log(chart.getOption())
   return chart
 }
-
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    ec: {},
-    list: [] as QuotationOrgVO[],
-    page: 1,
-    pageSize: 20,
-    totalPages: 1,
-    no_more: false,
-    isLoading: true,
-    showEC: false,
-    scrollTop: 0
+    orgTypeCode: '',
+    orgTypeName: '',
+    ec: {
+      // onInit: bar
+    },
+    showEC:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    const { code, name } = options
+    this.setData({
+      orgTypeCode: code,
+      orgTypeName: name
+    })
+    this.getQuotationData()
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -114,75 +118,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    updateIndex(this, 1)
-    this.setData({
-      showEC: false,
-      page: 1,
-      totalPages: 1,
-      no_more: false,
-      isLoading: true,
-      scrollTop: 0,
-      list: []
-    })
-    this.getQuotationData()
-    this.getList()
-  },
-  getList(isPage?: boolean, page?: number) {
-    page = page || 1
-    const params = {
-      pageSize: this.data.pageSize,
-      page: this.data.page
-    }
-    getSevenList(params).then((res) => {
-      if (res.code === '0000') {
-        if (res.value && res.value.rows?.length) {
-          if (isPage == true) {
-            this.setData({
-              list: [...this.data.list, ...res.value.rows],
-              totalPages: res.value.totalPages!,
-              isLoading: false
-            })
-          } else {
-            this.setData({
-              list: [...res.value.rows],
-              totalPages: res.value.totalPages!,
-              isLoading: false
-            })
-          }
-        } else {
-          this.setData({
-            list: [],
-            totalPages: 1,
-            isLoading: false
-          })
-        }
-      } else {
-        App.$showToast(res.message!, 'error')
-      }
-    })
-  },
-
-  /**
-   * 下拉到底加载数据
-   */
-  bindDownLoad() {
-    console.log(this.data.page, this.data.totalPages)
-    if (this.data.page >= this.data.totalPages) {
-      this.setData({
-        no_more: true
-      })
-    } else {
-      this.setData({
-        page: this.data.page + 1
-      })
-      this.getList(true, this.data.page)
-    }
-  },
+  onShow() {},
   getQuotationData() {
-    getAllSevenCurve().then((res) => {
+    const params = { orgTypeCode: this.data.orgTypeCode }
+    getOrgSevenCurve(params).then((res) => {
       if (res.code === '0000') {
         if (res.value) {
+          option.title.text = this.data.orgTypeName + ' （近7天报价）'
           option.xAxis.data = res.value.timeList!
           option.legend.data = res.value.nameList!
           const series = res.value.nameList?.map((name, index) => {
@@ -198,14 +140,14 @@ Page({
               data
             }
           })
-          console.log(series)
+
           option.series = series!
           console.log(option)
           this.setData({
             ec: {
               onInit: bar
             },
-            showEC: true
+            showEC:true
           })
         } else {
           App.$showToast('暂无数据', 'error')
@@ -213,13 +155,6 @@ Page({
       } else {
         App.$showToast(res.message!, 'error')
       }
-    })
-  },
-
-  handleClickDetails(e: WechatMiniprogram.BaseEvent) {
-    const { code: orgTypeCode, name } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `/pages/quotation/details/index?code=${orgTypeCode}&name=${name}`
     })
   },
 

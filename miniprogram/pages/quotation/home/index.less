@@ -33,40 +33,65 @@
           flex-shrink: 0;
           width: 112rpx;
           text-align: center;
+          &.details {
+              color: #0097E0;
+            }
+            &.bank {
+              width: 160rpx;
+            }
         }
       }
-      .line {
-        width: 100%;
-        height: 79rpx;
-        border-radius: 10rpx;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 20rpx;
-        box-sizing: border-box;
-        .value {
-          height: 33rpx;
-          font-size: 24rpx;
-          font-weight: 500;
-          color: 333333;
-          line-height: 33rpx;
-          flex-shrink: 0;
-          width: 112rpx;
-          text-align: center;
-          &.details{
-            color: #0097E0;
+      .lc-list{
+        height: calc(100vh - 680rpx - 110rpx - 50rpx);
+        .line {
+            width: 100%;
+            border-radius: 10rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 23rpx 20rpx;
+            box-sizing: border-box;
+            .value {
+              font-size: 24rpx;
+              font-weight: 500;
+              color: 333333;
+              line-height: 33rpx;
+              flex-shrink: 0;
+              width: 100rpx;
+              text-align: center;
+              &.details {
+                color: #0097E0;
+              }
+              &.bank{
+                width: 160rpx;
+              }
+            }
           }
-        }
+          .no-more {
+            width: 100%;
+            margin-top: 50rpx;
+            margin-bottom: 30rpx;
+          }
       }
-      .no-more{
-        width: 100%;
-        margin-top: 50rpx;
-        margin-bottom: 30rpx;
-      }
+      
     }
   }
 }
 ec-canvas {
   width: 100%;
   height: 100%;
+}
+
+.yoshop-notcont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 130rpx 100rpx;
+  box-sizing: border-box;
+}
+
+.cont {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 100rpx;
 }

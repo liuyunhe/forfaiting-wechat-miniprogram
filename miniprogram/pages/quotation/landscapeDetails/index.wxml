@@ -1,4 +1,4 @@
-<view class="quotation-page container rpx-30">
+<view class="quotation-page container">
   <view class="quotation-page-spance">
     <!-- 图表 -->
     <view class="echart-space box-primary">
@@ -10,8 +10,4 @@
       ></ec-canvas>
     </view>
   </view>
-  <button class="btn-show-landscape" bind:tap="onClickLandscape">
-    <image class="" src="../../../assets/images/show-landscape.png" mode="widthFix">
-    </image>
-  </button>
 </view>
