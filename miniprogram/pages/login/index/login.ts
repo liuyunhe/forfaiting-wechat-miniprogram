@@ -1,16 +1,17 @@
 // const $api = require("../../utils/api.js").API
 import { login } from '../../../api/user/index'
+import { updateRole } from '../../../utils/tab-service'
 const App = getApp<IAppOption>()
-export { }
+export {}
 
 Page({
   data: {
     radioType: false,
-    code: "",
-    iv: "",
-    phone: "",
-    phoneCode: "",
-    type: "",
+    code: '',
+    iv: '',
+    phone: '',
+    phoneCode: '',
+    type: '',
     isType: false
     // phoneStr: ''
   },
@@ -30,37 +31,37 @@ Page({
           _this.setData({
             code: res.code
           })
-          console.log("res=======", res)
+          console.log('res=======', res)
         } else {
-          console.log("登录失败！" + res.errMsg)
+          console.log('登录失败！' + res.errMsg)
         }
       }
     })
   },
   agreement() {
-    // wx.navigateTo({
-    //   url: "/pages/index/agreement"
-    // })
+    wx.navigateTo({
+      url: '/pages/login/agreement/agreement'
+    })
   },
-  getPhoneNumber(e: { detail: { errMsg: string; encryptedData: any; iv: any } }) {
+  getPhoneNumber(e: WechatMiniprogram.ButtonGetPhoneNumber) {
     let _this = this
-    console.log("getPhoneNumber ===>", e)
+    console.log('getPhoneNumber ===>', e)
 
-    if (e.detail.errMsg == "getPhoneNumber:ok") {
-      console.log("用户点击了接受", e)
-      console.log("code======", _this.data.code)
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      console.log('用户点击了接受', e)
+      console.log('code======', _this.data.code)
       _this.setData({
         phone: e.detail.encryptedData,
         iv: e.detail.iv,
         code: _this.data.code
       })
       console.log(e)
-      wx.setStorageSync("radioType", true)
+      wx.setStorageSync('radioType', true)
       // wx.setStorageSync("custId", 1)
       // this.details();
       _this.getLogin() // 将code、phone、iv发给后台，让后台解密手机号
     } else {
-      console.log("用户点击了拒绝")
+      console.log('用户点击了拒绝')
     }
     // }
     // },
@@ -70,21 +71,20 @@ Page({
     // },
     // });
   },
-
-  getLogin() {
-    if (!this.data.radioType) { 
-      wx.showModal({
-        title: "提示",
-        content: "请先阅读并同意《隐私条款》和《用户服务协议》再登录！",
-        success(res) {
-          if (res.confirm) {
-            console.log("用户点击确定")
-          } else if (res.cancel) {
-            console.log("用户点击取消")
-          }
+  onCheckGetPhoneNumber() {
+    wx.showModal({
+      title: '提示',
+      content: '请先阅读并同意《隐私条款》和《用户服务协议》再登录！',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
-      })
-    }
+      }
+    })
+  },
+  getLogin() {
     let _this = this
     var loginData = {
       appid: App.globalData.appid,
@@ -93,12 +93,45 @@ Page({
       iv: _this.data.iv
     }
     login(loginData).then((res) => {
-      if (res.state) {
+      App.globalData.checkLogin = true
+      if (res.code === '0000') {
         console.log(res)
-        wx.setStorageSync("token", res.value?.token)
-        if (_this.data.type == "0") {
+        const userId = wx.getStorageSync('userId') || ''
+        if (userId && userId !== res.value!.userId) {
+          wx.clearStorageSync()
+        }
+        console.log('login======>', res.value)
+        wx.setStorageSync('token', res.value && res.value.token)
+        wx.setStorageSync('userId', res.value && res.value.userId)
+        App.globalData.avatarFileId = res.value && res.value.avatarFileId
+        App.globalData.authFlag = res.value && res.value.authFlag
+        App.globalData.orgType = res.value && res.value.orgType
+        App.globalData.autherized = App.globalData.authFlag === '2'
+        App.globalData.account = (res.value && res.value.account)!
+        App.globalData.userId = (res.value && res.value.userId)!
+        App.onSyncChatMsg()
+        App.globalData.CHAT_MESSAGE_INTERVAL = setInterval(() => {
+          App.onSyncChatMsg()
+        }, 5 * 60 * 1000)
+        if ((res.value && res.value.orgType) === '2') {
+          updateRole(this, '0')
+        } else {
+          // 金融机构
+          updateRole(this, '1')
+        }
+        if (_this.data.type == '0') {
+          if (!App.globalData.autherized) {
+            wx.switchTab({
+              url: '/pages/my/home/index'
+            })
+          } else {
+            wx.switchTab({
+              url: '/pages/index/home/index'
+            })
+          }
+        } else if (!App.globalData.autherized) {
           wx.switchTab({
-            url: "/pages/index/home/index"
+            url: '/pages/my/home/index'
           })
         } else {
           wx.navigateBack()
@@ -106,14 +139,13 @@ Page({
       } else {
         wx.showToast({
           title: res.message!,
-          icon: "none"
+          icon: 'none'
         })
-        this.getCode()
       }
     })
   },
-  
-  getUserInfo(e: { detail: { userInfo: any } }) {
+
+  getUserInfo(e: WechatMiniprogram.ButtonGetUserInfo) {
     // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     console.log(e)
     this.setData({
@@ -123,7 +155,7 @@ Page({
   },
   details() {
     wx.redirectTo({
-      url: "/pages/index/details"
+      url: '/pages/index/details'
     })
   },
   radioTap() {
@@ -133,9 +165,9 @@ Page({
   },
   showStr() {
     wx.showToast({
-      title: "请您先勾选同意用户服务协议",
+      title: '请您先勾选同意用户服务协议',
       duration: 2000,
-      icon: "none"
+      icon: 'none'
     })
   },
   /**
@@ -144,6 +176,5 @@ Page({
   onReady: function () {
     //获得dialog组件
     // this.dialog = this.selectComponent("#dialog")
-  },
-
+  }
 })

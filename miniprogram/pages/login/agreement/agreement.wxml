@@ -1,0 +1,205 @@
+<view class="agreement container rpx-30">
+  <view class="title" hover-class="none" hover-stop-propagation="false">
+    桂林银行福费廷信息共享平台（“桂福宝”）注册条款和隐私协议
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    尊敬的用户，桂林银行股份有限公司（以下简称“我行”）非常重视桂林银行福费廷信息共享平台（“桂福宝”，下称“平台”）注册用户（下称“用户”或“您”）的隐私，为了保证对您的个人隐私信息合法、合理、适度的收集、使用，并在安全、可控的情况下进行传输、存储，我行制定了本协议。本协议签约双方为我行与本平台注册用户，本协议经您点击“确认”按钮并按照平台注册程序注册成功后，将被视为您已同意全部协议条款并签署本协议，本协议即具有法律效力，适用于您在本平台的全部活动。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    用户确认本协议后，本协议即在用户和我行之间产生法律效力，不涉及平台中用户之间产生的任何法律关系和法律纠纷。请您在注册成为用户前务必认真阅读本协议内容，若您不同意本协议的任意内容，或者无法准确理解条款内容及其解释，请不要进行后续操作；若您完成了用户注册操作，则表示您对本协议的全部内容已充分阅读并认可和同意遵守。您同时承诺遵守中国法律、法规、规章及其他政府规范性文件的规定，如有违反而造成任何法律后果，您将以本人名义独立承担所有相应的法律责任。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    本协议内容包括以下全部条款及已经发布的或将来可能发布的各类规则，包括但不限于业务规则。所有规则均为本协议不可分割的一部分，与正文具有同等法律效力。我行有权根据需要不定时地制定、修改本协议或各类规则，如本协议及规则有任何变更，不再单独通知您，一切变更以本平台最新公布的内容为准。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    一、定义及解释
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （一）平台：指我行开发并运营的福费廷信息共享平台（简称“桂福宝”）。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （二）用户：指接受并同意本协议，拟通过平台接受相关服务、进行相关信息确认并经过实名认证的平台自然人用户。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    二、实名认证
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    用户在申请进行实名认证时，应提供真实、准确、完整、合法且有效的注册数据，用户数据发生变动时，应及时进行更新，如涉及机构、手机号等信息变动的，须经平台审核后生效。您了解并同意，您有义务保持您提供信息的真实性及有效性。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    用户同意并授权平台审查、核对用户数据以确认用户身份，包括但不限于向第三方信息机构进行数据的比对核验。平台进行的数据审查不阻断用户就其提供数据真实性所承担的一切法律责任。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    三、我行如何收集和使用您的个人信息
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    为您提供服务并确保您的平台服务安全，在您注册或者使用平台服务过程中，我行会收集您在使用服务过程中主动输入或因使用服务而产生的信息：
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （一）当您使用平台功能或服务时，在下列情形中，您可能需要向我行提供或授权我行收集相应服务所需的个人信息。如您拒绝提供部分功能或服务所需信息，您可能无法使用部分功能或服务，但这不影响您正常使用平台的其他功能或服务。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    1．在您注册成为平台用户或使用平台服务时，您需提供您本人的手机号码，微信授权验证通过后您可成为平台的注册用户，可享受部分功能权限（例如:可查询产品模糊信息但不显示产品联系人信息）。如果您需使用更多服务，可通过补充机构名称、姓名、名片等信息，提交至我行后台管理系统进行审核，审核通过拥有信息发布、意向确认、在线通讯等业务权限；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    2．为了进一步提升服务体验、改进服务质量，或为防范风险，我行会收集您使用平台功能或服务的类别、方式和操作信息，我行会对这些信息进行综合统计、加工分析，并会根据上述信息向您提供相应服务或产品；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    3．如在上述情形之外收集或使用您的信息，我们会事先征求您的同意，并向您充分告知信息收集和使用的目的、方式和范围。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （二）我行如何使用您的个人信息
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    1．我行会根据本隐私政策的约定并为实现我行的服务或功能对所收集的您的个人信息进行使用；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    2．为了保障服务的稳定性与安全性，我行会将您的信息用于身份验证、安全防范、诈骗监测、预防或禁止非法活动、降低风险、存档和备份用途；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    3．根据法律法规或监管要求向相关部门进行报告；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    4．为提升您的产品或者服务体验，或为防范风险，我行会对服务使用情况进行汇总，统计分析、加工，但这些信息不会包含您的任何身份识别信息；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    5．在收集您的个人信息后，我行在通过技术手段对您的信息数据进行去标识化处理后，该等去标识化的信息将无法识别信息主体，我行有权在不经您同意的情况下直接使用，有权对用户数据库进行分析并予以商业化的利用；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    6．您授权同意的以及于法律允许的其他用途。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （三）征得授权同意的例外
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    根据相关法律法规、监管要求及国家标准，以下情形中遇到国家有权机关或者监管机关要求我行提供的，或者出于对您的权利、权益进行充分保护的目的，或者此处约定的其他合理情形的，我行会收集、使用您的相关个人信息而无需另行征求您的授权同意:
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    1．与国家安全、国防安全直接相关的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    2．与公共安全、公共卫生、重大公共利益直接相关的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    3．与犯罪侦查、起诉、审判和判决执行等直接相关的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    4．出于维护您或其他个人的生命、财产等重大合法权益但又很难得到您本人同意的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    5．所收集的个人信息是您自行向社会公众公开的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    6．从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    7．根据您要求签订和履行合同所必需的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    8．用于维护所提供的产品或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    9．出于公共利益开展统计或学术研究所必需，且其对外提供学术研究或描述的结果时，对结果中所包含的个人信息进行去标识化处理的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    10．法律法规及监管要求规定的其他情形。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    四、账户安全
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （一）用户的账户信息是其登录平台的唯一信息，本平台将通过校验用户账户信息识别其后续相关操作，用户应当妥善保管自身账户信息，我行任何时候均不会主动要求您提供您的账户信息。因您保管不善或因您遭受他人攻击、诈骗等行为导致的任何损失均由您自行承担。用户注册成功后，不得将账户信息转让给第三方使用，授权第三方使用的，应当提交载明具体权限、期限的授权文件，并申请变更相应用户信息。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （二）平台可以暂时停止提供或者限制服务的部分功能，或提供新的功能，在任何功能减少、增加或者变化时，只要用户仍然使用本平台，即表示同意本协议或者变更后的协议。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    五、平台使用注意事项
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （一）本平台只为用户提供相关信息展示服务，所有内容，包括指数、报价、数据以及其他信息，均仅提供参考，并无作为交易依据之意图，也不提供可能构成任何形式的建议或推荐。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （二）通过平台内展示的业务达成条件应视为要约邀请，用户提交服务需求后，相关事项由用户之间自行协商确定，相关服务项下资金往来均通过银行机构间清算完成，不涉及平台内交易结算，且平台不提供任何形式的汇兑服务，用户对此理解并同意。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （三）为满足用户业务需要，用户授权平台向其他第三方机构收集、调取用户数据，以核实用户身份等情况。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    （四）用户了解并认可，任何通过本平台进行的展示均不能避免以下风险的产生，本平台对于相关风险不承担任何责任：
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    1．宏观经济风险：由于宏观经济形式变化，可能引起价格方面的波动，由此造成损失；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    2．政策风险：有关法律、法规、相关政策、规则发生变化，所带来的风险及损失；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    3．违约风险：因交易对手无力或无意及时、足额履约所带来的风险；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    4．利率风险：市场利率变化带来的实际收益损失；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    5．不可抗力风险；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    6．由于用户过错导致的任何损失，包括但不限于：操作不当、遗忘或泄露密码、密码被破解、遗失数字证书、用户手机被第三方入侵、用户委托他人办理等；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    7．其他不可归因于本平台的风险。
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    （五）用户不得利用本平台或本平台服务从事任何不符合中华人民共和国法律法规或侵犯他人合法权益的行为，不得自行发布、转载或传送含有以下任意内容之一的信息，本平台在发现用户从事相关违规行为或发布相关信息时，有权基于独立判断直接删除用户在本平台发布或提交的任何信息，并有权立即停止用户在本平台的全部或部分功能而无需通知用户，且不承担任何责任。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    由于用户违规行为给平台或其他方造成损失，平台有权要求相关用户予以赔偿。上述违规行为或违规信息包括但不限于：
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    1．违反宪法确定的基本原则的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    2．危害国家安全、泄露国家机密、颠覆国家政权、破坏国家统一的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    3．损害国家荣誉或利益的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    4．煽动民族仇恨、民族歧视，破坏民族团结的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    5．破坏国家宗教政策，宣扬邪教或封建迷信的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    6．散布谣言，扰乱社会秩序，破坏社会稳定的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    7．散布淫秽、色情、赌博、暴力、恐怖或者教唆犯罪的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    8．侮辱或者诽谤他人，侵害他人合法权益的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    9．煽动非法集会、结社、游行、示威，聚众扰乱社会秩序的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    10．以非法民间组织名义活动的；
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    11．含有蓄意毁坏、恶意干扰、秘密地截取或侵占任何系统、数据或个人资料的任何病毒、伪装破坏程序、电脑蠕虫、定时程序炸弹或其他电脑程序的；
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    12．包含法律、法规禁止的其他内容的。
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    六、本协议如何更新
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false">
+    根据国家法律法规变化及服务运营需要，我行将对本协议及相关规则不时地进行修改，修改后的内容会通过本平台渠道公布，公布后即生效，并取代此前相关内容。您应不时关注相关公告、提示信息及协议、规则等相关内容的变动。您知悉并确认，如您不同意更新后的内容，应立即停止使用相应服务，我行将停止收集您的相关个人信息；如您继续使用服务，即视为同意接受更新内容。
+  </view>
+  <view class="text text-align-left" hover-class="none" hover-stop-propagation="false">
+    七、如您对本协议的任何条款存在疑问，请不要点击确认同意，并请先联系我行工作人员或客服热线96299进行咨询。
+  </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false"> </view>
+  <view class="text" hover-class="none" hover-stop-propagation="false"> </view>
+</view>
