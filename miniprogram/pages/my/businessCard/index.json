@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker-item/picker-item"
   },
   "navigationBarTitleText": "我的名片",
   "navigationBarTextStyle":"black"

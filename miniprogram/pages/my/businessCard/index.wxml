@@ -8,7 +8,8 @@
           class="input-drug"
           placeholder="请输入"
           name="address"
-          value="{{org}}"
+          value="{{orgName}}"
+          disabled
         />
       </view>
       <view class="item">
@@ -18,7 +19,8 @@
           class="input-drug"
           placeholder="请输入"
           name="address"
-          value="{{org}}"
+          value="{{nickname}}"
+          disabled
         />
       </view>
       <view class="item">
@@ -28,27 +30,36 @@
           class="input-drug"
           placeholder="请输入"
           name="address"
-          value="{{org}}"
+          value="{{department}}"
+          data-type="department"
+          bind:change="onInputChange"
+          style="color:#111"
         />
       </view>
       <view class="item">
-        <text class="name">手机号</text>
+        <text class="name">职务</text>
         <input
           type="text"
           class="input-drug"
           placeholder="请输入"
           name="address"
-          value="{{org}}"
+          value="{{post}}"
+          data-type="post"
+          bind:change="onInputChange"
+          style="color:#111"
         />
       </view>
       <view class="item">
-        <text class="name">所属机构</text>
+        <text class="name">手机号</text>
         <input
           type="number"
           class="input-drug"
           placeholder="请输入"
           name="address"
-          value="{{org}}"
+          value="{{mobile}}"
+          data-type="mobile"
+          bind:change="onInputChange"
+          style="color:#111"
         />
       </view>
       <button class="btn-primary submit" bind:tap="handleClickSubmit">
@@ -60,4 +71,17 @@
       <view class="note"> 注：修改所属机构或姓名，请重新认证 </view>
     </form>
   </view>
+  <t-picker
+      visible="{{registerOrgVisible}}"
+      value="{{registerOrgValue}}"
+      data-key="registerOrg"
+      title="请选择"
+      cancelBtn="取消"
+      confirmBtn="确认"
+      bindchange="onPickerChange"
+      bindpick="onColumnChange"
+      bindcancel="onPickerCancel"
+    >
+      <t-picker-item options="{{registerOrgs}}"></t-picker-item>
+    </t-picker>
 </view>
