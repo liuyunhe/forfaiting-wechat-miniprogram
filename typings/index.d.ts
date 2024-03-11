@@ -13,7 +13,14 @@ interface IAppOption {
     kBottomSafeHeight: number
     isIPhoneX: boolean
     autherized: boolean
+    orgType: string
     account: string
+    userId: string
+    avatarFileId: string
+    CHAT_MESSAGE_INTERVAL: null | string | number
+
+    checkLogin: boolean
+    HOME_LIST_NEED_REFRESH:boolean
   }
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
   updateManager: () => void
@@ -25,5 +32,6 @@ interface IAppOption {
     icon: 'success' | 'error' | 'loading' | 'none'
   ) => void
   checkIsIPhoneX: () => void
-  queryLoginUserAuth: () => void
+  onSyncChatMsg: (date?: string, callback?: () => void) => void
+  checkLoginReadyCallback?: <T>(res: T) => void
 }

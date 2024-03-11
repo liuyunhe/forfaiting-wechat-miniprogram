@@ -2,6 +2,7 @@
 /// <reference path="./advertisement/index.d.ts" />
 /// <reference path="./asset-release/index.d.ts" />
 /// <reference path="./chat-msg/index.d.ts" />
+/// <reference path="./quotation/index.d.ts" />
 
 
 
@@ -71,3 +72,13 @@ interface MapObject {
   key?: { [key: string]: any };
   [property: string]: any;
 }
+
+/**
+ * `AvatarFileId` : 头像iD
+ * 
+*/
+
+ interface AvatarFileId {
+   avatarFileId: string
+   [property: string]: any
+ }
