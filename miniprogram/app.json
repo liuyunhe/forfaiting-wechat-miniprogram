@@ -7,6 +7,7 @@
     "pages/index/chatRoom/index",
     "pages/quotation/home/index",
     "pages/quotation/details/index",
+    "pages/quotation/landscapeDetails/index",
     "pages/publish/home/index",
     "pages/publish/lcReceive/index",
     "pages/publish/lcSend/index",
@@ -15,7 +16,8 @@
     "pages/my/improveInfo/index",
     "pages/my/chatList/index",
     "pages/my/publishList/index",
-    "pages/login/index/login"
+    "pages/login/index/login",
+    "pages/login/agreement/agreement"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -58,7 +60,6 @@
     ],
     "position": "bottom"
   },
-  "style": "v2",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
