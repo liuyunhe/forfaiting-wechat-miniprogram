@@ -1,0 +1,97 @@
+/**
+ * 千分位格式化
+ * @param value 要格式化的数字
+ * @param units 单位 w:万元,k:千元,y:元,默认为元
+ * @returns
+ */
+function thousands(value, units, floatPartFlag) {
+  if (!value) return 0
+  if (units != 'w' && units != 'k') units = 'y'
+  var result = ''
+  var numValue = value - 0
+  if (isNaN(numValue)) return value
+  if (units == 'w') numValue = numValue / 10000
+  if (units == 'k') numValue = numValue / 1000
+  var value_ = numValue.toFixed(2)
+
+  var arr = value_.split('.')
+  console.log(arr)
+  // 整数部分处理，增加,
+  var reg = getRegExp('(d)(?=(?:d{3})+$)', 'g')
+  var intPartFormat = arr[0].replace(reg, ',')
+  console.log(intPartFormat)
+  // const intPartFormat = arr[0].replace(/(\d)(?=(?:\d{3})+$)/g, "$1,");
+
+  // 小数部分
+  if (!floatPartFlag) {
+    result = intPartFormat
+    return result
+  } else {
+    var floatPart = arr[1]
+    result = intPartFormat + '.' + floatPart
+    return result
+  }
+}
+function add_comma_toThousands(num) {
+  var num = (num || 0).toString()
+  var result = ''
+  while (num.length > 3) {
+    result = ',' + num.slice(-3) + result
+    num = num.slice(0, num.length - 3)
+  }
+  if (num) {
+    result = num + result
+  }
+  return result
+}
+
+function getDate(time) { 
+  return time.split(' ')[0]
+}
+
+function forMatReadeType(type) {
+  var arr = type.split(',').sort(compare)
+  var resultArr = []
+  arr.map(function (item) {
+    if (item == 1) {
+      resultArr.push('服贸')
+    }
+    if (item == 2) {
+      resultArr.push('货贸')
+    }
+    if (item == 3) {
+      resultArr.push('服贸/货贸')
+    }
+  })
+  return resultArr.join(',')
+}
+
+function forMatPromiseOrgType(type) {
+  var arr = type.split(',').sort(compare)
+  var resultArr = []
+  arr.map(function (item) {
+     if (item === '1') {
+       resultArr.push('国股')
+     }
+     if (item === '2') {
+       resultArr.push('城商')
+     }
+     if (item === '3') {
+       resultArr.push('农商')
+     }
+  })
+  return resultArr.join(',')
+}
+
+function compare(a, b) { 
+  var A = a - 0
+  var B = b - 0
+  return A - B
+}
+
+module.exports = {
+  thousands: add_comma_toThousands,
+  getDate: getDate,
+  forMatPromiseOrgType: forMatPromiseOrgType,
+  forMatReadeType: forMatReadeType
+}
