@@ -1,6 +1,15 @@
 <view class="chat-list-page container rpx-30">
   <view class="search-space">
-    <input type="text" placeholder="搜索" 	placeholder-style="color:#999999"/>
+    <input
+      type="text"
+      placeholder="搜索"
+      placeholder-style="color:#999999"
+      confirm-type="search"
+      cursor-spacing="10"
+      bindconfirm="handleClickInputConfirm"
+      bindblur="handleClickInputConfirm"
+      value="{{ inputValue }}"
+    />
   </view>
   <scroll-view
     class="chat-list"
@@ -17,51 +26,69 @@
     bindscrolltolower=""
     bindscroll=""
   >
-    <view class="chat-list-item">
+    <view
+      class="chat-list-item"
+      wx:for="{{list}}"
+      wx:if="{{item.showMessage}}"
+      wx:key="index"
+      bind:tap="onClickChatRoom"
+      data-id="{{item.roomId}}"
+      data-ruserid="{{userId == item.receiveUserId ? item.sendUserId : item.receiveUserId}}"
+    >
       <view class="left">
         <image
           class="head-avtar"
-          src="../../../assets/images/head-avtar.png"
+          src="{{ item.avatarFileId? BASE_URL_IMG+item.avatarFileId:'../../../assets/images/head-avtar.png' }}"
           mode="widthFix"
           lazy-load="true"
         >
         </image>
-        <view class="new-message-point"></view>
+        <view class="new-message-point" wx:if="{{item.showNew}}"></view>
       </view>
       <view class="right">
         <view class="person-info">
-          <view class="name"> 陈晓 </view>
-          <view class="bank"> 桂林银行南宁分行 </view>
+          <view class="name"> {{ item.nickname }} </view>
+          <view class="bank"> {{ item.orgName }} </view>
         </view>
-        <view class="last-message text-overflow">
-          可以呀李总，非常欢迎！如果卡片信息展示可以呀李总，非常欢迎！
-          如果卡片信息展示可以呀李总，非常欢迎！如果卡片信息展示
+        <view class="last-message text-overflow" wx:if="{{item.msgType == 1}}">
+          {{item.content}}
         </view>
-        <view class="time"> 2024-1-9 10:53:14 </view>
-      </view>
-    </view>
-    <view class="chat-list-item">
-      <view class="left">
-        <image
-          class="head-avtar"
-          src="../../../assets/images/head-avtar.png"
-          mode="widthFix"
-          lazy-load="true"
+        <view class="last-message text-overflow" wx:if="{{item.msgType == 3}}">
+          【资产】
+        </view>
+        <view
+          class="last-message text-overflow"
+          wx:if="{{item.msgType == 2 && item.status == 0}}"
         >
-          <view class="new-message-point"> </view>
-        </image>
-      </view>
-      <view class="right">
-        <view class="person-info">
-          <view class="name"> 陈晓 </view>
-          <view class="bank"> 桂林银行南宁分行 </view>
+          【已下架】
         </view>
-        <view class="last-message message text-overflow">【已拒绝】</view>
-        <view class="time"> 2024-1-9 10:53:14 </view>
+        <view
+          class="last-message text-overflow"
+          wx:if="{{item.msgType == 2 && item.status == 1}}"
+        >
+          【已确认】
+        </view>
+        <view
+          class="last-message text-overflow"
+          wx:if="{{item.msgType == 2 && item.status == 2}}"
+        >
+          【已拒绝】
+        </view>
+        <view
+          class="last-message text-overflow"
+          wx:if="{{item.msgType == 2 && item.status == 3}}"
+        >
+          【已与其他人达成】
+        </view>
+        <view
+          class="last-message text-overflow"
+          wx:if="{{item.msgType == 2 && item.status == 4}}"
+        >
+          【达成确认】
+        </view>
+        <view class="time"> {{ item.updateTime }} </view>
       </view>
     </view>
-    <view class="no-more">
-      暂无更多
-    </view>
+    <view class="no-more"> 暂无更多 </view>
   </scroll-view>
 </view>
