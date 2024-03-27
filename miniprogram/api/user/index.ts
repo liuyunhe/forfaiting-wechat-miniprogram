@@ -77,7 +77,7 @@ export const updateUserAuthCard = (params: UserAuthVO) =>
   }) 
 
 /**
-* `queryLoginUserAuth` : 小程序用户修改名片
+* `queryLoginUserAuth` : 小程序用户修改头像
 * @param AvatarFileId
 * @returns CommonRespResult\<MessageResult\<never>\>
 * 
