@@ -81,7 +81,6 @@ Page({
 
   handleScroll(e: WechatMiniprogram.CustomEvent) {
     const isFixed = e.detail.isFixed
-    console.log(isFixed)
     if (isFixed && !this.data.showNavBar) {
       this.setData({
         showNavBar: true
@@ -181,7 +180,8 @@ Page({
       showGG: false,
       showCS: false,
       showNS: false,
-      showLayer: false
+      showLayer: false,
+      list:[]
     })
     this.getList()
   },
@@ -344,7 +344,8 @@ Page({
       showMoreFilter: false,
       showLayer: false,
       term: '',
-      amount: ''
+      amount: '',
+      list: []
     })
     this.getList()
   },
