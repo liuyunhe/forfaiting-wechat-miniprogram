@@ -8,7 +8,7 @@
     .banner {
       width: 750rpx;
     }
-    .person-info{
+    .person-info {
       position: absolute;
       width: 100%;
       height: 140rpx;
@@ -17,63 +17,110 @@
       top: 218rpx;
       display: flex;
       justify-content: space-between;
-      .head{
-        position: relative;
-        .head-img{
+      .head {
+        .avatar {
+          position: relative;
           width: 140rpx;
           height: 140rpx;
-          border-radius: 100%;
+          padding: 0;
+          background: none;
+          border: none;
+          &::after {
+            border: none;
+          }
+          .head-img {
+            width: 140rpx;
+            height: 140rpx;
+            border-radius: 100%;
+          }
+          .pen-icon {
+            position: absolute;
+            width: 34rpx;
+            height: 34rpx;
+            top: 106rpx;
+            left: 106rpx;
+          }
         }
-        .pen-icon{
-          position: absolute;
-          width: 34rpx;
-          height: 34rpx;
-          top: 106rpx;
-          left: 106rpx;
-        }
+
       }
-      .details{
+      .details {
         width: 480rpx;
-        .name{
+        .name {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          height: 42rpx;
-          padding-top: 8rpx;
-          .name-text{
+          height: 50rpx;
+          padding-top: 15rpx;
+          .name-text {
+            height: 50rpx;
             font-size: 36rpx;
             font-weight: 800;
             color: #fff;
-            line-height: 42rpx;
+            line-height: 50rpx;
+            padding-top: 28rpx;
+            margin-bottom: 20rpx;
           }
-          .register-active{
+          .phone-num {
+            font-size: 30rpx;
+            font-weight: 500;
+            color: #fff;
+            line-height: 30rpx;
+            margin-top: 12rpx;
+            margin-left: 10rpx;
+          }
+          .register-active {
             width: 24rpx;
             height: 24rpx;
-            margin-left: 24rpx;
+            margin-left: 15rpx;
           }
-          .register-text{
+          .register-text {
+
             font-size: 20rpx;
             font-weight: 500;
             color: #fff;
             line-height: 23rpx;
             margin-left: 2rpx;
+            margin-top: 5rpx;
           }
         }
-        .bank{
-          font-size: 24rpx;
-          font-weight: 500;
-          color: #fff;
-          line-height: 28rpx;
+        .bank {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
           margin-top: 12rpx;
+          .bank-name {
+            font-size: 30rpx;
+            font-weight: 500;
+            color: #fff;
+            line-height: 36rpx;
+            text-align: left;
+          }
+          .register {
+            width: 100rpx;
+            margin-left: 10rpx;
+            align-self: flex-start;
+            padding-top: 6rpx;
+            flex-shrink: 0;
+            height: 24rpx;
+          }
+          .register-active {
+            float: left;
+            width: 24rpx;
+            height: 24rpx;
+
+          }
+          .register-text {
+            float: left;
+            font-size: 20rpx;
+            font-weight: 500;
+            color: #fff;
+            line-height: 23rpx;
+            margin-left: 2rpx;
+            margin-top: 5rpx;
+          }
         }
-        .phone-num{
-          font-size: 24rpx;
-          font-weight: 500;
-          color: #fff;
-          line-height: 28rpx;
-          margin-top: 12rpx;
-        }
-        .phone{
+
+        .phone {
           height: 50rpx;
           font-size: 36rpx;
           font-weight: 800;
@@ -82,9 +129,9 @@
           padding-top: 28rpx;
           margin-bottom: 20rpx;
         }
-        .register{
+        .register {
           height: 40rpx;
-          .register-icon{
+          .register-icon {
             width: 120rpx;
             height: 40rpx;
           }
@@ -147,7 +194,7 @@
 
         }
       }
-      
+
     }
     .register {
       width: 690rpx;
@@ -160,7 +207,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        &:first-child{
+        &:first-child {
           border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
         }
         .left {
@@ -190,13 +237,17 @@
             font-weight: 500;
             color: #FFFFFF;
             text-align: center;
+            &.disable {
+              background-color: #F5F5F5;
+              color: #999999;
+            }
           }
         }
       }
     }
   }
-  .info-container{
-    .func-list{
+  .info-container {
+    .func-list {
       width: 690rpx;
       height: 488rpx;
       background: #FFFFFF;
@@ -204,51 +255,70 @@
       border-radius: 10rpx;
       padding: 0 40rpx;
       box-sizing: border-box;
-      .line-icon{
+      .line-icon {
+        position: relative;
         width: 50rpx;
         height: 50rpx;
+        .new-msg {
+          position: absolute;
+          width: 15rpx;
+          height: 15rpx;
+          top: 0;
+          right: 0;
+          background-color: red;
+          border-radius: 15rpx;
+        }
       }
-      .line-title{
-          font-size: 28rpx;
-          font-weight: 500;
-          color: #333333;
-          line-height: 33rpx;
-          flex: 1;
-          margin-left: 26rpx;
-          margin-right: 23rpx;
-          .msg{
-            font-size: 24rpx;
-            float: right;
-            color: #0097E0;
-          }
+      .line-title {
+        font-size: 28rpx;
+        font-weight: 500;
+        color: #333333;
+        line-height: 33rpx;
+        flex: 1;
+        margin-left: 26rpx;
+        margin-right: 23rpx;
+        .msg {
+          font-size: 24rpx;
+          float: right;
+          color: #0097E0;
+        }
       }
-      .line{
+      .line {
         height: 162rpx;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
-          &:last-child {
-            border: none;
-          }
-          .arrow-icon{
-            width: 24rpx;
-            height: 24rpx;
-          }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+        &:last-child {
+          border: none;
+        }
+        .arrow-icon {
+          width: 24rpx;
+          height: 24rpx;
+        }
 
       }
     }
-    .btn-exit {
-      margin-top: 250rpx;
-      width: 610rpx;
-      height: 88rpx;
-      line-height: 88rpx;
-      text-align: center;
-      padding: 0;
-      color: #fff;
-      background: linear-gradient(180deg, #0097E0 0%, #0062B1 100%);
-      border-radius: 10rpx 10rpx 10rpx 10rpx;
-      margin-bottom: 50rpx;
-    }
   }
+  .btn-exit {
+    margin-top: 150rpx;
+    width: 610rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    padding: 0;
+    color: #fff;
+    background: linear-gradient(180deg, #0097E0 0%, #0062B1 100%);
+    border-radius: 10rpx 10rpx 10rpx 10rpx;
+    margin-bottom: 50rpx;
+    font-size: 30rpx;
+  }
+}
+
+.canvas {
+  position: fixed;
+  top: -9999999999999999999px;
+  left: 0;
+  z-index: -1;
+  background: #fff;
 }

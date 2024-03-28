@@ -7,32 +7,48 @@
     />
     <view class="person-info">
       <view class="head">
-        <image
-          class="head-img"
-          src="../../../assets/images/head-avtar.png"
-          mode="widthFix"
-        />
-        <image
-          class="pen-icon"
-          src="../../../assets/images/pen-icon.png"
-          mode="widthFix"
-        />
+        <button
+          class="avatar"
+          open-type="chooseAvatar"
+          bind:chooseavatar="onChooseAvatar"
+          bind:tap="onClickChooseAvatar"
+        >
+          <image
+            class="head-img"
+            src="{{ avatarFileId?headImg:'../../../assets/images/head-avtar.png' }}"
+            mode="aspectFill"
+          />
+          <image
+            class="pen-icon"
+            src="../../../assets/images/pen-icon.png"
+            mode="widthFix"
+          />
+        </button>
       </view>
       <view class="details" wx:if="{{autherized}}">
         <view class="name">
-          <view class="name-text">王德川</view>
-          <image
+          <view class="name-text">{{nickname}}</view>
+          <view class="phone-num"> {{ account }} </view>
+          
+        </view>
+        <view class="bank">
+          <view class="bank-name" >
+            {{ orgName }} 
+          </view>
+          <view class="register">
+            <image
             class="register-active"
             src="../../../assets/images/register-active.png"
             mode="widthFix"
-          />
-          <view class="register-text"> 已认证 </view>
+            />
+            <view class="register-text"> 已认证 </view>
+          </view> 
+          
         </view>
-        <view class="bank"> 青岛银行股份有限公司香港花园支行 </view>
-        <view class="phone-num"> 15303446875 </view>
+        
       </view>
       <view class="details" wx:else>
-        <view class="phone"> 15303448557 </view>
+        <view class="phone"> {{account}} </view>
         <view class="register">
           <image
             class="register-icon"
@@ -47,14 +63,14 @@
   <view wx:if="{{!autherized}}" class="register-container rpx-30">
     <view class="progress">
       <view class="top">
-        <view class="circle active"></view>
+        <view class="circle {{ authFlag ==='0' ? 'active' : '' }}"></view>
         <view class="line"></view>
-        <view class="circle"></view>
+        <view class="circle {{ authFlag ==='1' ? 'active' : '' }}"></view>
       </view>
       <view class="bottom">
-        <view class="text active">填写认证信息</view>
+        <view class="text {{ authFlag ==='0' ? 'active' : '' }}" >填写认证信息</view>
         <view class="line"></view>
-        <view class="text">等待审核</view>
+        <view class="text {{ authFlag ==='1' ? 'active' : '' }}">等待审核</view>
       </view>
     </view>
     <view class="register">
@@ -64,7 +80,17 @@
           <view class="info"> 上传金融机构信息审核 </view>
         </view>
         <view class="right">
-          <button class="btn" bind:tap="handleClickRegister" data-type="org">去认证</button>
+          <button
+            class="btn"
+            wx:if="{{authFlag ==='0'}}"
+            catch:tap="handleClickRegister"
+            data-type="1"
+          >
+            去认证
+          </button>
+          <button class="btn disable" wx:if="{{authFlag ==='1'}}" data-type="1">
+            {{ autherizedOrgType == '1' ? '已提交':'去认证' }}
+          </button>
         </view>
       </view>
       <view class="line">
@@ -73,10 +99,21 @@
           <view class="info"> 上传企业工商信息后审核 </view>
         </view>
         <view class="right">
-          <button class="btn" bind:tap="handleClickRegister" data-type="company">去认证</button>
+          <button
+            class="btn"
+            wx:if="{{authFlag ==='0'}}"
+            catch:tap="handleClickRegister"
+            data-type="2"
+          >
+            去认证
+          </button>
+          <button class="btn disable" wx:if="{{authFlag ==='1'}}" data-type="2">
+            {{ autherizedOrgType == '2'?'已提交':'去认证' }}
+          </button>
         </view>
       </view>
     </view>
+    <button class="btn-exit" bind:tap="handleClickExit">退出</button>
   </view>
   <!-- 已认证 -->
   <view wx:else class="info-container rpx-30">
@@ -99,10 +136,10 @@
           class="line-icon"
           src="../../../assets/images/line-com-icon.png"
           mode="widthFix"
-        />
+        ><span class="new-msg" wx:if="{{showNewMsg}}"></span></image>
         <view class="line-title">
           <span> 沟通列表 </span>
-          <span class="msg">2条未读消息</span>
+          
         </view>
         <image
           class="arrow-icon"
@@ -126,4 +163,5 @@
     </view>
     <button class="btn-exit" bind:tap="handleClickExit">退出</button>
   </view>
+  <canvas class="canvas" style="height:{{windowHeight}}px;width:{{windowWidth}}px;" canvas-id='attendCanvasId'></canvas>
 </view>
