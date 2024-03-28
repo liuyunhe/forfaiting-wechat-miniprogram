@@ -20,8 +20,8 @@ Page({
     this.setData({
       type: options.type
     })
-    this.getCode()
   },
+  onShow() {},
   getCode() {
     let _this = this
     wx.login({
@@ -46,23 +46,33 @@ Page({
   getPhoneNumber(e: WechatMiniprogram.ButtonGetPhoneNumber) {
     let _this = this
     console.log('getPhoneNumber ===>', e)
-
+    const encryptedData = e.detail.encryptedData!
+    const iv = e.detail.iv!
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       console.log('用户点击了接受', e)
-      console.log('code======', _this.data.code)
-      _this.setData({
-        phone: e.detail.encryptedData,
-        iv: e.detail.iv,
-        code: _this.data.code
+      wx.login({
+        success(res) {
+          if (res.code) {
+            const code = res.code
+            console.log('res=======', res)
+            wx.setStorageSync('radioType', true)
+            console.log('wx.login ===>', res)
+            console.log('wx.getPhoneNumber ===>', e)
+            _this.getLogin({
+              encryptedData,
+              iv,
+              code,
+              appid: App.globalData.appid
+            }) // 将code、phone、iv发给后台，让后台解密手机号
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
       })
-      console.log(e)
-      wx.setStorageSync('radioType', true)
-      // wx.setStorageSync("custId", 1)
-      // this.details();
-      _this.getLogin() // 将code、phone、iv发给后台，让后台解密手机号
     } else {
       console.log('用户点击了拒绝')
     }
+
     // }
     // },
     // fail: () => {
@@ -84,14 +94,9 @@ Page({
       }
     })
   },
-  getLogin() {
+  getLogin(loginData: LoginParamVO) {
     let _this = this
-    var loginData = {
-      appid: App.globalData.appid,
-      code: _this.data.code,
-      encryptedData: _this.data.phone,
-      iv: _this.data.iv
-    }
+    console.log(JSON.stringify(loginData))
     login(loginData).then((res) => {
       App.globalData.checkLogin = true
       if (res.code === '0000') {
